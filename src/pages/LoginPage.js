@@ -64,7 +64,7 @@ const LoginPage = () => {
                 marginTop: '100px', 
                 padding: '20px',
                 borderRadius: '8px',
-                fontFamily: 'fantasy',
+                fontFamily: 'Roboto',
                 fontWeight: 'bold',
             }}
         >
@@ -75,15 +75,15 @@ const LoginPage = () => {
                     borderRadius: 2, 
                     boxShadow: 3,
                     border: '2px solid #61dafb',
-                    fontFamily: 'fantasy',
-                    fontWeight: 'bold',
+                    fontFamily: 'Roboto', // Set the font family to fantasy
+                    fontWeight: 'bold', // Make the font bold
                 }}
             >
                 <Typography 
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }} 
+                    sx={{ color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set text color to white and font to fantasy
                 >
                     Log In
                 </Typography>
@@ -106,10 +106,10 @@ const LoginPage = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' } // Change label color and font to bold
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' },
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -132,10 +132,10 @@ const LoginPage = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' } // Change label color and font to bold
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' },
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -157,8 +157,8 @@ const LoginPage = () => {
                             '&:hover': {
                                 backgroundColor: '#55c3e5'
                             },
-                            fontFamily: 'fantasy',
-                            fontWeight: 'bold'
+                            fontFamily: 'Roboto', // Set font family to fantasy
+                            fontWeight: 'bold' // Make the button text bold
                         }} 
                         fullWidth 
                     >
@@ -170,7 +170,7 @@ const LoginPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'fantasy', fontWeight: 'bold' }} 
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set link color to blue and font to fantasy
                 >
                     Don't have an account? Sign up here.
                 </Link>
