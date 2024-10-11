@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function App() {
   return (
@@ -26,6 +28,15 @@ function App() {
           Log In
         </a>
       </header>
+
+      <h1>Welcome to the Application</h1>
+      <nav>
+        <ul>
+          <li><Link to="/login">Login Page</Link></li>
+          <li><Link to="/matching">Matching Page</Link></li>
+          <li><Link to="/resources">Resource Page</Link></li>
+        </ul>
+      </nav>
     </div>
   );
 }
