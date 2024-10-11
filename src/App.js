@@ -7,15 +7,23 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Welcome to Mentora!
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="signin.html"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Sign In
+        </a>
+        <a
+          className="App-link"
+          href="login.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Log In
         </a>
       </header>
     </div>
