@@ -19,7 +19,7 @@ const SignupPage = () => {
                 marginTop: '100px', 
                 padding: '20px', // Add some padding
                 borderRadius: '8px', // Optional: add border radius for rounded corners
-                fontFamily: 'fantasy', // Set the font family to fantasy
+                fontFamily: 'Roboto',// Set the font family to fantasy
                 fontWeight: 'bold', // Make the font bold
             }}
         >
@@ -30,7 +30,7 @@ const SignupPage = () => {
                     borderRadius: 2, 
                     boxShadow: 3,
                     border: '2px solid #61dafb',
-                    fontFamily: 'fantasy', // Set the font family to fantasy
+                    fontFamily: 'Roboto',// Set the font family to fantasy
                     fontWeight: 'bold', // Make the font bold
                 }}
             >
@@ -38,7 +38,7 @@ const SignupPage = () => {
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }} // Set text color to white and font to fantasy
+                    sx={{ color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set text color to white and font to fantasy
                 >
                     Sign Up
                 </Typography>
@@ -49,10 +49,10 @@ const SignupPage = () => {
                         margin="normal" 
                         required 
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' } // Change label color and font to bold
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb' // Set border color to #61dafb
@@ -73,10 +73,10 @@ const SignupPage = () => {
                         margin="normal" 
                         required 
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Roboto',fontWeight: 'bold' } // Change label color and font to bold
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb' // Set border color to #61dafb
@@ -98,7 +98,7 @@ const SignupPage = () => {
                             '&:hover': {
                                 backgroundColor: '#55c3e5' // Optional: change the hover color
                             },
-                            fontFamily: 'fantasy', // Set font family to fantasy
+                            fontFamily: 'Roboto', // Set font family to fantasy
                             fontWeight: 'bold' // Make the button text bold
                         }} 
                         fullWidth 
@@ -111,7 +111,7 @@ const SignupPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'fantasy', fontWeight: 'bold' }} // Set link color to blue and font to fantasy
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set link color to blue and font to fantasy
                 >
                     Already have an account? Log in here.
                 </Link>
