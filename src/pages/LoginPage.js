@@ -17,7 +17,9 @@ const LoginPage = () => {
             style={{ 
                 marginTop: '100px', 
                 padding: '20px', // Add some padding
-                borderRadius: '8px' // Optional: add border radius for rounded corners
+                borderRadius: '8px', // Optional: add border radius for rounded corners
+                fontFamily: 'fantasy', // Set the font family to fantasy
+                fontWeight: 'bold', // Make the font bold
             }}
         >
             <Box 
@@ -26,14 +28,16 @@ const LoginPage = () => {
                     padding: 3, 
                     borderRadius: 2, 
                     boxShadow: 3,
-                    border: '2px solid #61dafb'
+                    border: '2px solid #61dafb',
+                    fontFamily: 'fantasy', // Set the font family to fantasy
+                    fontWeight: 'bold', // Make the font bold
                 }}
             >
                 <Typography 
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white' }} // Set text color to blue
+                    sx={{ color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }} // Set text color to white and font to fantasy
                 >
                     Log In
                 </Typography>
@@ -43,9 +47,11 @@ const LoginPage = () => {
                         label="Username" 
                         margin="normal" 
                         required 
-                        InputLabelProps={{ style: { color: 'white' } }} 
+                        InputLabelProps={{ 
+                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' } // Change label color and font to bold
+                        }} 
                         InputProps={{ 
-                            style: { color: 'white' }, 
+                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb' // Set border color to #61dafb
@@ -65,9 +71,11 @@ const LoginPage = () => {
                         type="password" 
                         margin="normal" 
                         required 
-                        InputLabelProps={{ style: { color: 'white' } }} 
+                        InputLabelProps={{ 
+                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' } // Change label color and font to bold
+                        }} 
                         InputProps={{ 
-                            style: { color: 'white' }, 
+                            style: { color: 'white', fontFamily: 'fantasy', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb' // Set border color to #61dafb
@@ -88,7 +96,9 @@ const LoginPage = () => {
                             backgroundColor: '#61dafb', // Set custom background color
                             '&:hover': {
                                 backgroundColor: '#55c3e5' // Optional: change the hover color
-                            }
+                            },
+                            fontFamily: 'fantasy', // Set font family to fantasy
+                            fontWeight: 'bold' // Make the button text bold
                         }} 
                         fullWidth 
                     >
@@ -100,7 +110,7 @@ const LoginPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5' }} // Set link color to blue
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'fantasy', fontWeight: 'bold' }} // Set link color to blue and font to fantasy
                 >
                     Don't have an account? Sign up here.
                 </Link>
