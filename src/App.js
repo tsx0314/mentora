@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthProvider } from './utils/AuthContext';
 import './App.css';
 // Import the logo image
-import logo from './PSA-Logo-Piano-Black.png';
+import logo from './image.png';
 
 function App() {
   return (
