@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
 
 const LoginPage = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
-        // Handle login logic here
     };
 
+    useEffect(() => {
+        // Set the background color of the body to black
+        document.body.style.backgroundColor = 'black';
+    }, []);
+
     return (
-        <Container maxWidth="xs" style={{ marginTop: '100px' }}>
+        <Container 
+            maxWidth="xs" 
+            style={{ 
+                marginTop: '100px', 
+                padding: '20px', // Add some padding
+                borderRadius: '8px' // Optional: add border radius for rounded corners
+            }}
+        >
             <Box 
                 sx={{ 
-                    bgcolor: 'rgba(255, 255, 255, 0.9)', 
+                    bgcolor: 'black',
                     padding: 3, 
                     borderRadius: 2, 
-                    boxShadow: 3 
+                    boxShadow: 3,
+                    border: '2px solid #61dafb'
                 }}
             >
-                <Typography variant="h5" align="center" gutterBottom>
+                <Typography 
+                    variant="h5" 
+                    align="center" 
+                    gutterBottom 
+                    sx={{ color: 'white' }} // Set text color to blue
+                >
                     Log In
                 </Typography>
                 <form onSubmit={handleSubmit}>
@@ -26,6 +43,21 @@ const LoginPage = () => {
                         label="Username" 
                         margin="normal" 
                         required 
+                        InputLabelProps={{ style: { color: 'white' } }} 
+                        InputProps={{ 
+                            style: { color: 'white' }, 
+                            sx: { 
+                                '& .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb' // Set border color to #61dafb
+                                },
+                                '&:hover .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb' // Set border color on hover to #61dafb
+                                },
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb' // Set border color when focused to #61dafb
+                                }
+                            }
+                        }} 
                     />
                     <TextField 
                         fullWidth 
@@ -33,17 +65,43 @@ const LoginPage = () => {
                         type="password" 
                         margin="normal" 
                         required 
+                        InputLabelProps={{ style: { color: 'white' } }} 
+                        InputProps={{ 
+                            style: { color: 'white' }, 
+                            sx: { 
+                                '& .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb' // Set border color to #61dafb
+                                },
+                                '&:hover .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb' // Set border color on hover to #61dafb
+                                },
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb' // Set border color when focused to #61dafb
+                                }
+                            }
+                        }} 
                     />
                     <Button 
                         type="submit" 
                         variant="contained" 
-                        color="primary" 
+                        sx={{ 
+                            backgroundColor: '#61dafb', // Set custom background color
+                            '&:hover': {
+                                backgroundColor: '#55c3e5' // Optional: change the hover color
+                            }
+                        }} 
                         fullWidth 
                     >
                         Log In
                     </Button>
                 </form>
-                <Link href="/signin" variant="body2" align="center" display="block" sx={{ marginTop: 2 }}>
+                <Link 
+                    href="/signup" 
+                    variant="body2" 
+                    align="center" 
+                    display="block" 
+                    sx={{ marginTop: 2, color: '#55c3e5' }} // Set link color to blue
+                >
                     Don't have an account? Sign up here.
                 </Link>
             </Box>
