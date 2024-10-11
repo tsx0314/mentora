@@ -11,21 +11,15 @@ function App() {
         <p>
           Welcome to Mentora!
         </p>
-        <a
-          className="App-link"
-          href="signin.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Sign In
+        <a>
+          <Link className="App-link" to="/signup">
+          Sign Up
+          </Link>
         </a>
-        <a
-          className="App-link"
-          href="login.html"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a>
+          <Link className="App-link" to="/login">
           Log In
+          </Link>
         </a>
       </header>
 
