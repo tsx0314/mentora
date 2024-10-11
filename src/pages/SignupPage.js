@@ -58,10 +58,10 @@ const SignupPage = () => {
             maxWidth="xs" 
             style={{ 
                 marginTop: '100px', 
-                padding: '20px', // Add some padding
-                borderRadius: '8px', // Optional: add border radius for rounded corners
-                fontFamily: 'Roboto',// Set the font family to fantasy
-                fontWeight: 'bold', // Make the font bold
+                padding: '20px',
+                borderRadius: '8px',
+                fontFamily: 'Roboto',
+                fontWeight: 'bold',
             }}
         >
             <Box 
@@ -71,18 +71,32 @@ const SignupPage = () => {
                     borderRadius: 2, 
                     boxShadow: 3,
                     border: '2px solid #61dafb',
-                    fontFamily: 'Roboto',// Set the font family to fantasy
-                    fontWeight: 'bold', // Make the font bold
+                    fontFamily: 'Roboto',
+                    fontWeight: 'bold',
                 }}
             >
                 <Typography 
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set text color to white and font to fantasy
+                    sx={{ color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }} 
                 >
                     Sign Up
                 </Typography>
+                {errorMessage && (
+                    <Typography 
+                        variant="body2" 
+                        align="center" 
+                        color="error" 
+                        sx={{ 
+                            mb: 2, 
+                            fontFamily: 'Roboto', // Set font family to Roboto
+                            fontWeight: 'bold' // Optional: Make the text bold
+                        }}
+                    >
+                        {errorMessage}
+                    </Typography>
+                )}
                 <form onSubmit={handleSubmit}>
                     <TextField 
                         fullWidth 
@@ -92,10 +106,10 @@ const SignupPage = () => {
                         value={email}  // Bind value to email state
                         onChange={(e) => setEmail(e.target.value)}  // Update email state
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' },
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -115,11 +129,39 @@ const SignupPage = () => {
                         type="password" 
                         margin="normal" 
                         required 
+                        value={password}  // Bind value to password state
+                        onChange={(e) => setPassword(e.target.value)}  // Update password state
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto',fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' },
+                            sx: { 
+                                '& .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb'
+                                },
+                                '&:hover .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb'
+                                },
+                                '&.Mui-focused .MuiOutlinedInput-notchedOutline': { 
+                                    borderColor: '#61dafb'
+                                }
+                            }
+                        }} 
+                    />
+                    <TextField 
+                        fullWidth 
+                        label="Confirm Password" 
+                        type="password" 
+                        margin="normal" 
+                        required 
+                        value={confirmPassword}  // Bind value to confirmPassword state
+                        onChange={(e) => setConfirmPassword(e.target.value)}  // Update confirmPassword state
+                        InputLabelProps={{ 
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }
+                        }} 
+                        InputProps={{ 
+                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' },
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -141,8 +183,8 @@ const SignupPage = () => {
                             '&:hover': {
                                 backgroundColor: '#55c3e5'
                             },
-                            fontFamily: 'Roboto', // Set font family to fantasy
-                            fontWeight: 'bold' // Make the button text bold
+                            fontFamily: 'Roboto',
+                            fontWeight: 'bold'
                         }} 
                         fullWidth 
                     >
@@ -154,7 +196,7 @@ const SignupPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set link color to blue and font to fantasy
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Roboto', fontWeight: 'bold' }} 
                 >
                     Already have an account? Log in here.
                 </Link>
