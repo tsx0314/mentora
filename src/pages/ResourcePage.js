@@ -18,9 +18,6 @@ function ResourcePage() {
   const [currentExperienceLevel, setCurrentExperienceLevel] = useState('');
 
   // State for right column (Aspiring)
-  const [aspiringDepartment, setAspiringDepartment] = useState('');
-  const [aspiringSkills, setAspiringSkills] = useState([]);
-  const [aspiringSkillInput, setAspiringSkillInput] = useState('');
   const [aspiringInput, setAspiringInput] = useState(''); // State for aspiration text input
 
   // Handle changes to current department
@@ -42,27 +39,6 @@ function ResourcePage() {
   // Handle deleting a current skill
   const handleDeleteCurrentSkill = (skillToDelete) => {
     setCurrentSkills(currentSkills.filter((skill) => skill !== skillToDelete));
-  };
-
-  // Handle changes to aspiring department
-  const handleAspiringDepartmentChange = (event) => {
-    setAspiringDepartment(event.target.value);
-  };
-
-  // Handle adding an aspiring skill
-  const handleAddAspiringSkill = (event) => {
-    if (event.key === 'Enter' && aspiringSkillInput.trim()) {
-      // Add the skill if it's not already in the list
-      if (!aspiringSkills.includes(aspiringSkillInput.trim())) {
-        setAspiringSkills([...aspiringSkills, aspiringSkillInput.trim()]);
-      }
-      setAspiringSkillInput(''); // Clear input field
-    }
-  };
-
-  // Handle deleting an aspiring skill
-  const handleDeleteAspiringSkill = (skillToDelete) => {
-    setAspiringSkills(aspiringSkills.filter((skill) => skill !== skillToDelete));
   };
 
   // Handle submit action for Aspiration text box
