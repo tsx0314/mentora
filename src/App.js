@@ -17,7 +17,9 @@ function App() {
       <Typography variant="h2" component="h1" gutterBottom sx={{ fontFamily: 'Roboto',  color: 'white' }}>
         Welcome to Mentora!
       </Typography>
-
+      <Typography variant="body2" sx={{ fontFamily: 'Myriad', color: 'lightgray', marginBottom: '20px', fontsize: '2rem'}}>
+        Your Mentorship Matchmaking Hub powered by AI, For PSA Code Sprint
+      </Typography>
       {/* Navigation Links */}
       <Box sx={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px' }}>
         <Button variant="contained" color="primary" component={Link} to="/signup" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>

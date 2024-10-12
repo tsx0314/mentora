@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AppBar, Toolbar, Typography, Box, Container, Paper, Button, Avatar, Tabs, Tab, TextField } from '@mui/material';
+import { AppBar, Toolbar, Typography, Box, Avatar, Tabs, Tab, Container, Paper, InputBase, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
 
@@ -7,26 +7,22 @@ function ResourcePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentTab = location.pathname;
-  const [messages, setMessages] = useState([]);
 
-  // Function to handle sending messages
+  const [messages, setMessages] = useState([]);
+  const [inputMessage, setInputMessage] = useState('');
+
   const handleSendMessage = () => {
-    const inputElement = document.getElementById('message-input');
-    const newMessage = inputElement.value;
-    if (newMessage.trim()) {
-      setMessages([
-        ...messages,
-        { text: newMessage, type: 'user' },
-        { text: 'This is a response from the bot.', type: 'bot' }
-      ]);
-      inputElement.value = '';
+    if (inputMessage.trim()) {
+      setMessages([...messages, { text: inputMessage, user: 'me' }]);
+      setMessages([...messages, { text: inputMessage, user: 'me' }, { text: 'this is interaction test', user: 'bot' }]);
+      setInputMessage('');
     }
   };
 
   return (
-    <div style={{ backgroundColor: 'black', minHeight: '100vh', padding: '20px', fontFamily: 'Roboto' }}>
-      {/* Header Section */}
-      <AppBar position="static" style={{ backgroundColor: '#1b1b1b' }}>
+    <div style={{ backgroundColor: '#0A0F1F', minHeight: '100vh', fontFamily: 'Myriad' }}>
+      {/* Header Section with Tabs */}
+      <AppBar position="static" style={{ backgroundColor: '#161A2A' }}>
         <Toolbar style={{ justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center">
             {/* Logo Image */}
@@ -45,7 +41,7 @@ function ResourcePage() {
                 style={{
                   color: currentTab === '/matching' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/matching' ? '#333333' : 'inherit',
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Myriad',
                   fontWeight: 'bold',
                 }}
               />
@@ -57,7 +53,7 @@ function ResourcePage() {
                 style={{
                   color: currentTab === '/resources' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/resources' ? '#333333' : 'inherit',
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Myriad',
                   fontWeight: 'bold',
                 }}
               />
@@ -69,63 +65,93 @@ function ResourcePage() {
       </AppBar>
 
       {/* Main Content */}
-      <Container maxWidth="md" style={{ marginTop: '30px', fontFamily: 'Roboto' }}>
-        {/* Chat Box Section */}
-        <Paper elevation={3} style={{ width: '100%', height: '500px', padding: '20px', backgroundColor: '#333333', color: '#ffffff', overflowY: 'auto', border: '2px solid #61dafb' }}>
-          <Typography variant="h5" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
-            Chat Bot
+      <Container maxWidth="lg" style={{ marginTop: '30px', fontFamily: 'Myriad' }}>
+        <Paper
+          elevation={3}
+          style={{
+            padding: '20px',
+            backgroundColor: '#111c30',
+            color: '#ffffff',
+            borderRadius: '10px',
+            border: '2px solid #61dafb',
+            marginBottom: '30px',
+          }}
+        >
+          <Typography variant="h5" style={{ fontFamily: 'Myriad', textAlign: 'center', fontWeight: 'bold' }}>
+            Resources
           </Typography>
-          <div id="chat-box" style={{ maxHeight: '400px', overflowY: 'auto' }}>
-            {/* Render Messages */}
+          <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+            Use our chatbot below to ask questions or explore resources.
+          </Typography>
+        </Paper>
+
+        {/* Chatbox Section */}
+        <Paper
+          elevation={3}
+          style={{
+            padding: '20px',
+            backgroundColor: '#111c30',
+            color: '#ffffff',
+            borderRadius: '10px',
+            border: '2px solid #61dafb',
+            height: 'calc(100vh - 300px)',  // Fixed height same as left and right boxes on the matching page
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+          }}
+        >
+          {/* Chat Messages */}
+          <div style={{ flex: 1, overflowY: 'auto', padding: '10px' }}>
             {messages.map((message, index) => (
-              <Box
-                key={index}
-                display="flex"
-                justifyContent={message.type === 'user' ? 'flex-end' : 'flex-start'}
-                alignItems="center"
-                style={{ marginBottom: '10px' }}
-              >
-                {message.type === 'bot' && (
-                  <Avatar style={{ marginRight: '10px', backgroundColor: '#555555', color: '#ffffff' }}>B</Avatar>
-                )}
-                <Paper
+              <div key={index} style={{ textAlign: message.user === 'me' ? 'right' : 'left', margin: '10px 0' }}>
+                <div
                   style={{
-                    padding: '10px 15px',
-                    borderRadius: '15px',
-                    maxWidth: '70%',
-                    backgroundColor: message.type === 'user' ? '#1976d2' : '#444444',
+                    display: 'inline-block',
+                    backgroundColor: message.user === 'me' ? '#61dafb' : '#333333',
                     color: '#ffffff',
+                    borderRadius: '10px',
+                    padding: '10px',
+                    maxWidth: '80%',
                   }}
                 >
                   {message.text}
-                </Paper>
-                {message.type === 'user' && (
-                  <Avatar src="/path/to/profile.jpg" alt="User Profile" style={{ marginLeft: '10px' }} />
-                )}
-              </Box>
+                </div>
+              </div>
             ))}
           </div>
-        </Paper>
 
-        {/* Input Bar Section */}
-        <Box display="flex" width="100%" marginTop="20px">
-          <TextField
-            id="message-input"
-            fullWidth
-            placeholder="Type your message..."
-            variant="outlined"
-            InputProps={{ style: { color: '#ffffff' } }}
-            InputLabelProps={{ style: { color: '#ffffff' } }}
-            style={{ backgroundColor: '#444444', borderRadius: '8px', border: '2px solid #61dafb' }}
-          />
-          <Button
-            variant="contained"
-            onClick={handleSendMessage}
-            style={{ marginLeft: '10px', backgroundColor: '#61dafb', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold' }}
-          >
-            Send
-          </Button>
-        </Box>
+          {/* Input Bar */}
+          <div style={{ display: 'flex', alignItems: 'center', marginTop: '20px' }}>
+            <InputBase
+              placeholder="Type your message..."
+              value={inputMessage}
+              onChange={(e) => setInputMessage(e.target.value)}
+              style={{
+                flex: 1,
+                backgroundColor: '#333333',
+                color: '#ffffff',
+                padding: '10px',
+                borderRadius: '10px',
+                marginRight: '10px',
+              }}
+            />
+            <Button
+              variant="contained"
+              onClick={handleSendMessage}
+              style={{
+                backgroundColor: '#61dafb',
+                color: '#0A0F1F',
+                fontFamily: 'Myriad',
+                fontWeight: 'bold',
+                padding: '10px 20px',
+                borderRadius: '30px',
+                fontSize: '1rem',
+              }}
+            >
+              Send
+            </Button>
+          </div>
+        </Paper>
       </Container>
     </div>
   );
