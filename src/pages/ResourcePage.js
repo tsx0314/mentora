@@ -363,7 +363,7 @@ function ResourcePage() {
                   InputProps={{
                     style: { fontFamily:'Myriad', color: '#ffffff' },
                     sx: {
-                      height: '242px',
+                      height: '220px',
                       display: 'flex', // Use flex display to align content
                       alignItems: 'flex-start', // Align items to the top
                       '& .MuiOutlinedInput-notchedOutline': {
