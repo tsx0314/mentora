@@ -191,7 +191,7 @@ function ResourcePage() {
                 }}
               >
                 <Avatar src={require('../junior.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
-                <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
+                <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px', marginBottom:'15px' }}>
                   Current Role
                 </Typography>
 
@@ -362,13 +362,16 @@ function ResourcePage() {
                   multiline
                   rows={4}
                   fullWidth
-                  style={{ marginTop: '20px' }}
+                  style={{ marginTop: '35px' }}
                   InputLabelProps={{
                     style: { color: '#ffffff' },
                   }}
                   InputProps={{
                     style: { color: '#ffffff' },
                     sx: {
+                      height: '242px',
+                      display: 'flex', // Use flex display to align content
+                      alignItems: 'flex-start', // Align items to the top
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
                       },
@@ -387,6 +390,7 @@ function ResourcePage() {
                   variant="contained"
                   onClick={handleAspirationSubmit}
                   style={{
+                    fontFamily: 'Myriad',
                     backgroundColor: '#61dafb',
                     color: '#0A0F1F',
                     fontWeight: 'bold',
