@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Button, Avatar, Tabs, Tab, Input } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
+import CloseIcon from '@mui/icons-material/Close'; // Importing Close Icons
 
 import axios from 'axios';
 import mammoth from 'mammoth'; // For DOCX processing
