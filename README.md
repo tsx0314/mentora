@@ -32,8 +32,8 @@ The match-making process is powered by AI!
 [Link to the Deployed App](https://symphonious-cascaron-96b516.netlify.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-## Available Scripts
-In the project directory, you can run:
+## How to build the project locally
+After you download the repository, you can install the relevant dependencies and run:
 ### `npm start`
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
