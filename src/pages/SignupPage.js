@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
-import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth methods
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth methods
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 
 const SignupPage = () => {
@@ -8,6 +8,7 @@ const SignupPage = () => {
     const [password, setPassword] = useState('');  // State to store password input
     const [confirmPassword, setConfirmPassword] = useState(''); // State to store confirm password input
     const [errorMessage, setErrorMessage] = useState(''); // State to store error messages
+    const [successMessage, setSuccessMessage] = useState(''); 
     const auth = getAuth();  // Get Firebase Auth instance
     const navigate = useNavigate();  // Initialize useNavigate hook for redirection
 
@@ -20,8 +21,14 @@ const SignupPage = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Successful signup, redirect to login or another page
-                navigate('/matching'); // Redirect to matching page (or any page you prefer)
+                setSuccessMessage('Account created successfully! Logging in...');
+                signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    // After login, redirect to the resource page after a 2-second delay
+                    setTimeout(() => {
+                        navigate('/resources'); // Redirect to resource page
+                    }, 2000); // Delay for 2 seconds
+                })
             })
             .catch((error) => {
                 // Handle errors and display meaningful messages
@@ -90,11 +97,26 @@ const SignupPage = () => {
                         color="error" 
                         sx={{ 
                             mb: 2, 
-                            fontFamily: 'Roboto', // Set font family to Roboto
-                            fontWeight: 'bold' // Optional: Make the text bold
+                            fontFamily: 'Roboto', 
+                            fontWeight: 'bold' 
                         }}
                     >
                         {errorMessage}
+                    </Typography>
+                )}
+                {successMessage && (
+                    <Typography 
+                        variant="body2" 
+                        align="center" 
+                        color="success" 
+                        sx={{ 
+                            mb: 2, 
+                            fontFamily: 'Roboto', 
+                            fontWeight: 'bold',
+                            color: 'lightgreen'  // Change to a success color
+                        }}
+                    >
+                        {successMessage}
                     </Typography>
                 )}
                 <form onSubmit={handleSubmit}>
@@ -202,7 +224,7 @@ const SignupPage = () => {
                 </Link>
             </Box>
         </Container>
-    );
+    ); 
 };
 
 export default SignupPage;
