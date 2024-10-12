@@ -33,7 +33,7 @@ function MatchingPage() {
         <Toolbar style={{ justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center">
             {/* Logo Image */}
-            <Avatar src={require('../psa_logo.png')} alt="Logo" style={{ marginRight: '20px' }} />
+            <Avatar src="/path/to/logo.png" alt="Logo" style={{ marginRight: '20px' }} />
             <Tabs
               value={currentTab}
               onChange={(event, newValue) => navigate(newValue)}
@@ -67,51 +67,76 @@ function MatchingPage() {
             </Tabs>
           </Box>
           {/* Profile Image */}
-          <Avatar src={require('../user.png')} alt="Profile Picture" />
+          <Avatar src="/path/to/profile.jpg" alt="Profile Picture" />
         </Toolbar>
       </AppBar>
 
       {/* Main Content */}
       <Container maxWidth="md" style={{ marginTop: '30px', fontFamily: 'Roboto' }}>
         {/* Intro Section */}
-      <Paper
-        style={{
-          padding: '20px',
-          marginBottom: '30px',
-          backgroundColor: '#333333',
-          color: '#ffffff',
-          fontFamily: 'Roboto',
-          border: '2px solid #61dafb'
-        }}
-      >
-        <Typography variant="h5" gutterBottom>
-          Welcome to Your Mentorship Matchmaking Hub!
-        </Typography>
+        <Paper
+          style={{
+            padding: '30px',
+            marginBottom: '30px',
+            backgroundColor: '#333333',
+            color: '#ffffff',
+            border: '2px solid #61dafb',
+            borderRadius: '10px',
+          }}
+        >
+          <Typography variant="h5" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
+            Welcome to Your Mentorship Matchmaking Hub!
+          </Typography>
 
-        <Typography variant="body1" paragraph>
-          Embark on a journey of growth and discovery with our personalized mentorship
-          matching platform. We're excited to help you connect with mentors who can
-          guide you toward achieving your professional goals.
-        </Typography>
+          <Typography variant="body1" paragraph style={{ fontFamily: 'Roboto' }}>
+            Embark on a journey of growth and discovery with our personalized mentorship
+            matching platform. We're excited to help you connect with mentors who can
+            guide you toward achieving your professional goals.
+          </Typography>
 
-        <Typography variant="h6" gutterBottom>
-          How It Works:
-        </Typography>
+          <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
+            How It Works:
+          </Typography>
 
-        <Typography variant="body1" component="div">
-          <ol>
-            <li>
-              <strong>Tell Us About Yourself:</strong>
-              <ul>
+          {/* How It Works - Tell Us About Yourself Section */}
+          <Paper
+            style={{
+              padding: '20px',
+              marginBottom: '20px',
+              backgroundColor: '#444444',
+              color: '#ffffff',
+              border: '2px solid #61dafb',
+              borderRadius: '8px',
+            }}
+          >
+            <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
+              Tell Us About Yourself:
+            </Typography>
+            <Typography variant="body1" component="div" style={{ fontFamily: 'Roboto' }}>
+              <ul style={{ paddingLeft: '20px', listStyleType: 'disc' }}>
                 <li>
                   <strong>Upload Your Resume:</strong> Let us know about your skills, career
                   aspirations, interests, and the areas you'd like to develop.
                 </li>
               </ul>
-            </li>
-            <li>
-              <strong>Intelligent Matching:</strong>
-              <ul>
+            </Typography>
+          </Paper>
+
+          {/* How It Works - Intelligent Matching Section */}
+          <Paper
+            style={{
+              padding: '20px',
+              backgroundColor: '#444444',
+              color: '#ffffff',
+              border: '2px solid #61dafb',
+              borderRadius: '8px',
+            }}
+          >
+            <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
+              Intelligent Matching:
+            </Typography>
+            <Typography variant="body1" component="div" style={{ fontFamily: 'Roboto' }}>
+              <ul style={{ paddingLeft: '20px', listStyleType: 'disc' }}>
                 <li>
                   <strong>AI-Powered Recommendations:</strong> Our advanced AI
                   analyzes your input to understand your unique needs.
@@ -121,19 +146,18 @@ function MatchingPage() {
                   suggestions who align with your goals and interests.
                 </li>
               </ul>
-            </li>
-          </ol>
-        </Typography>
+            </Typography>
+          </Paper>
 
-        <Typography variant="h6" gutterBottom style={{ marginTop: '20px' }}>
-          Empower your future by finding the right mentor today!
-        </Typography>
-      </Paper>
+          <Typography variant="h6" gutterBottom style={{ marginTop: '20px', fontFamily: 'Roboto', fontWeight: 'bold' }}>
+            Empower your future by finding the right mentor today!
+          </Typography>
+        </Paper>
 
         {/* File Upload Section */}
         <Grid container spacing={4} style={{ marginBottom: '30px' }}>
           <Grid item xs={12}>
-            <Paper style={{ padding: '20px', backgroundColor: '#444444', color: '#ffffff', border: '2px solid #61dafb' }}>
+            <Paper style={{ padding: '20px', backgroundColor: '#444444', color: '#ffffff', border: '2px solid #61dafb', borderRadius: '8px' }}>
               <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
                 Upload your file (PDF/DOCX):
               </Typography>
@@ -155,7 +179,7 @@ function MatchingPage() {
         </Box>
 
         {/* Output Section */}
-        <Paper style={{ padding: '20px', backgroundColor: '#333333', color: '#ffffff', border: '2px solid #61dafb'}}>
+        <Paper style={{ padding: '20px', backgroundColor: '#333333', color: '#ffffff', border: '2px solid #61dafb', borderRadius: '8px' }}>
           <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
             Output:
           </Typography>
