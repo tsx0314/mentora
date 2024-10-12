@@ -151,7 +151,7 @@ function ResourcePage() {
               >
                 <Avatar src={require('../junior.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
-                  Current
+                  Current Position
                 </Typography>
 
                 {/* Department Dropdown */}
@@ -283,6 +283,21 @@ function ResourcePage() {
                     `Based on your current department (${currentDepartment}) and skills: ${currentSkills.join(', ')}, here are your potential pathways!` : 
                     'Please select a department and add skills to generate pathways.'}
                 </Typography>
+                {/* Scrollable Text Box */}
+              <Box style={{
+                backgroundColor: '#0A0F1F',
+                padding: '20px',
+                borderRadius: '10px',
+                color: 'white',
+                height: '200px', // Fixed height for scroll
+                overflowY: 'scroll',
+                border: '1px solid #61dafb',
+                width: '90%'
+              }}>
+                <Typography variant="body1" style={{ color: 'white' }}>
+                  This is a scrollable content area. 
+                </Typography>
+              </Box>
               </Paper>
             </Box>
           </Grid>
@@ -312,74 +327,9 @@ function ResourcePage() {
               >
                 <Avatar src={require('../expert.png')} alt="Aspiring Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
-                  Aspiring
+                  Aspiration
                 </Typography>
 
-                {/* Department Dropdown */}
-                <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
-                  <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
-                  <Select
-                    value={aspiringDepartment}
-                    onChange={handleAspiringDepartmentChange}
-                    label="Department"
-                    sx={{
-                      color: '#ffffff',
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#61dafb',
-                      },
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#61dafb',
-                      },
-                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#61dafb',
-                      },
-                    }}
-                  >
-                    <MenuItem value="Technology">Technology</MenuItem>
-                    <MenuItem value="Human Resources">Human Resources</MenuItem>
-                    <MenuItem value="Finance">Finance</MenuItem>
-                    <MenuItem value="Operations">Operations</MenuItem>
-                  </Select>
-                </FormControl>
-
-                {/* Skill Input */}
-                <TextField
-                  label="Add a Skill"
-                  variant="outlined"
-                  value={aspiringSkillInput}
-                  onChange={(e) => setAspiringSkillInput(e.target.value)}
-                  onKeyDown={handleAddAspiringSkill}
-                  placeholder="Press Enter to add a skill"
-                  fullWidth
-                  style={{ marginTop: '20px' }}
-                  InputLabelProps={{
-                    style: { color: '#ffffff' },
-                  }}
-                  InputProps={{
-                    style: { color: '#ffffff' },
-                    sx: {
-                      '& .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#61dafb',
-                      },
-                      '&:hover .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#61dafb',
-                      },
-                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                        borderColor: '#61dafb',
-                      },
-                    },
-                  }}
-                />
-                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  {aspiringSkills.map((skill, index) => (
-                    <Chip
-                      key={index}
-                      label={skill}
-                      onDelete={() => handleDeleteAspiringSkill(skill)}
-                      color="primary"
-                    />
-                  ))}
-                </Box>
               </Paper>
             </Box>
           </Grid>
