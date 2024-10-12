@@ -300,7 +300,7 @@ function ResourcePage() {
                   Your Career Pathway
                 </Typography>
                 <Typography variant="body1" style={{ fontFamily: 'Myriad', textAlign: 'left', marginTop: '10px' }}>
-                    {gptResponse || 'Please select a department and add skills to generate pathways.'}
+                    {'Please select a department and add skills to generate pathways.'}
                 </Typography>
                 <Box
                   sx={{
@@ -308,12 +308,15 @@ function ResourcePage() {
                     width: "90%", 
                     overflowY: 'auto', // Enable vertical scrolling
                     padding: '10px',
-                    border: '1px solid #61dafb', // Optional: to differentiate the scrolling box
-                    borderRadius: '5px', // Optional: add some border-radius for a better look
-                    backgroundColor: '#111c30', // Background color to match the design
+                    border: '10px', // Optional: to differentiate the scrolling box
+                    borderRadius: '10px', // Optional: add some border-radius for a better look
+                    backgroundColor: '#222b3d', // Background color to match the design
                     alignItems: 'flex-start',
                   }}
                 >
+                <Typography variant="body1" style={{ fontFamily: 'Myriad', textAlign: 'left', marginTop: '10px' }}>
+                    {gptResponse}
+                </Typography>
                 </Box>
               </Paper>
             </Box>
@@ -361,7 +364,7 @@ function ResourcePage() {
                     style: { fontFamily:'Myriad', color: '#ffffff' },
                   }}
                   InputProps={{
-                    style: { fontFamily:'Myriad', color: '#ffffff' },
+                    style: { fontFamily:'Myriad', color: '#222b3d' },
                     sx: {
                       height: '220px',
                       display: 'flex', // Use flex display to align content
