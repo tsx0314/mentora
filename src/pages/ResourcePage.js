@@ -1,5 +1,8 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab,
+  Select, MenuItem, FormControl, InputLabel, TextField, Chip
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
 
@@ -7,6 +10,60 @@ function ResourcePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentTab = location.pathname;
+
+  // State for left column (Current)
+  const [currentDepartment, setCurrentDepartment] = useState('');
+  const [currentSkills, setCurrentSkills] = useState([]);
+  const [currentSkillInput, setCurrentSkillInput] = useState('');
+  const [currentExperienceLevel, setCurrentExperienceLevel] = useState('');
+
+  // State for right column (Aspiring)
+  const [aspiringDepartment, setAspiringDepartment] = useState('');
+  const [aspiringSkills, setAspiringSkills] = useState([]);
+  const [aspiringSkillInput, setAspiringSkillInput] = useState('');
+
+
+  // Handle changes to current department
+  const handleCurrentDepartmentChange = (event) => {
+    setCurrentDepartment(event.target.value);
+  };
+
+  // Handle adding a current skill
+  const handleAddCurrentSkill = (event) => {
+    if (event.key === 'Enter' && currentSkillInput.trim()) {
+      // Add the skill if it's not already in the list
+      if (!currentSkills.includes(currentSkillInput.trim())) {
+        setCurrentSkills([...currentSkills, currentSkillInput.trim()]);
+      }
+      setCurrentSkillInput(''); // Clear input field
+    }
+  };
+
+  // Handle deleting a current skill
+  const handleDeleteCurrentSkill = (skillToDelete) => {
+    setCurrentSkills(currentSkills.filter((skill) => skill !== skillToDelete));
+  };
+
+  // Handle changes to aspiring department
+  const handleAspiringDepartmentChange = (event) => {
+    setAspiringDepartment(event.target.value);
+  };
+
+  // Handle adding an aspiring skill
+  const handleAddAspiringSkill = (event) => {
+    if (event.key === 'Enter' && aspiringSkillInput.trim()) {
+      // Add the skill if it's not already in the list
+      if (!aspiringSkills.includes(aspiringSkillInput.trim())) {
+        setAspiringSkills([...aspiringSkills, aspiringSkillInput.trim()]);
+      }
+      setAspiringSkillInput(''); // Clear input field
+    }
+  };
+
+  // Handle deleting an aspiring skill
+  const handleDeleteAspiringSkill = (skillToDelete) => {
+    setAspiringSkills(aspiringSkills.filter((skill) => skill !== skillToDelete));
+  };
 
   return (
     <div style={{ backgroundColor: '#0A0F1F', minHeight: '100vh', fontFamily: 'Myriad' }}>
@@ -81,7 +138,6 @@ function ResourcePage() {
               <Paper
                 elevation={3}
                 style={{
-                  marginRight: '20px',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -93,18 +149,110 @@ function ResourcePage() {
                   alignItems: 'center',
                 }}
               >
-                {/* Logo for Left Column */}
                 <Avatar src={require('../junior.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Current
                 </Typography>
+
+                {/* Department Dropdown */}
+                <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
+                  <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
+                  <Select
+                    value={currentDepartment}
+                    onChange={handleCurrentDepartmentChange}
+                    label="Department"
+                    sx={{
+                      color: '#ffffff',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    }}
+                  >
+                    <MenuItem value="Technology">Technology</MenuItem>
+                    <MenuItem value="Human Resources">Human Resources</MenuItem>
+                    <MenuItem value="Finance">Finance</MenuItem>
+                    <MenuItem value="Operations">Operations</MenuItem>
+                  </Select>
+                </FormControl>
+
+                {/* Experience Level Dropdown */}
+                <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
+                  <InputLabel style={{ color: '#ffffff' }}>Experience Level</InputLabel>
+                  <Select
+                    value={currentExperienceLevel}
+                    onChange={(event) => setCurrentExperienceLevel(event.target.value)}
+                    label="Experience Level"
+                    sx={{
+                      color: '#ffffff',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    }}
+                  >
+                    <MenuItem value="Fresh Graduate">Fresh Graduate</MenuItem>
+                    <MenuItem value="Junior">Junior</MenuItem>
+                    <MenuItem value="Senior">Senior</MenuItem>
+                    <MenuItem value="Director and above">Director and above</MenuItem>
+                  </Select>
+                </FormControl>
+
+                {/* Skill Input */}
+                <TextField
+                  label="Add a Skill"
+                  variant="outlined"
+                  value={currentSkillInput}
+                  onChange={(e) => setCurrentSkillInput(e.target.value)}
+                  onKeyDown={handleAddCurrentSkill}
+                  placeholder="Press Enter to add a skill"
+                  fullWidth
+                  style={{ marginTop: '20px' }}
+                  InputLabelProps={{
+                    style: { color: '#ffffff' },
+                  }}
+                  InputProps={{
+                    style: { color: '#ffffff' },
+                    sx: {
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    },
+                  }}
+                />
+                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  {currentSkills.map((skill, index) => (
+                    <Chip
+                      key={index}
+                      label={skill}
+                      onDelete={() => handleDeleteCurrentSkill(skill)}
+                      color="primary"
+                    />
+                  ))}
+                </Box>
               </Paper>
             </Box>
           </Grid>
 
           {/* Arrow between Left and Middle Column */}
           <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-40px', marginRight: '-15px' }} />
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-10px', marginRight: '-30px' }} />
           </Grid>
 
           {/* Middle Column - Output */}
@@ -114,7 +262,6 @@ function ResourcePage() {
                 elevation={3}
                 style={{
                   marginLeft: '20px',
-                  marginRight: '20px',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -124,44 +271,25 @@ function ResourcePage() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  marginLeft: '-10px',
-                  marginRight: '-10px'
                 }}
               >
-                {/* Logo for Middle Column */}
-                <Avatar src={require('../book.png')} alt="Output Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
+                <Avatar src={require('../book.png')} alt="Pathway Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
-                  Path
+                  Your Career Pathway
                 </Typography>
-
-                {/* Scrollable Inner Box */}
-                <Paper
-                  elevation={3}
-                  style={{
-                    width: '90%',
-                    height: '70%',
-                    padding: '20px',
-                    backgroundColor: '#222b3d',
-                    color: '#ffffff',
-                    borderRadius: '10px',
-                    marginTop: '20px',
-                    overflowY: 'auto',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Typography variant="body1" style={{ textAlign: 'center' }}>
-                    Your mentor match will appear here.
-                  </Typography>
-                </Paper>
+                <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+                  {/* Career pathway generation logic would be implemented here */}
+                  {currentDepartment && currentSkills.length > 0 ? 
+                    `Based on your current department (${currentDepartment}) and skills: ${currentSkills.join(', ')}, here are your potential pathways!` : 
+                    'Please select a department and add skills to generate pathways.'}
+                </Typography>
               </Paper>
             </Box>
           </Grid>
 
-          {/* Arrow between Middle and Right Column */}
+          {/* Arrow between Middle Column and Right Column */}
           <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-10px', marginRight: '-40px' }} />
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-10px', marginRight: '-30px'  }} />
           </Grid>
 
           {/* Right Column - Aspiring */}
@@ -182,11 +310,76 @@ function ResourcePage() {
                   alignItems: 'center',
                 }}
               >
-                {/* Logo for Right Column */}
                 <Avatar src={require('../expert.png')} alt="Aspiring Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Aspiring
                 </Typography>
+
+                {/* Department Dropdown */}
+                <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
+                  <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
+                  <Select
+                    value={aspiringDepartment}
+                    onChange={handleAspiringDepartmentChange}
+                    label="Department"
+                    sx={{
+                      color: '#ffffff',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    }}
+                  >
+                    <MenuItem value="Technology">Technology</MenuItem>
+                    <MenuItem value="Human Resources">Human Resources</MenuItem>
+                    <MenuItem value="Finance">Finance</MenuItem>
+                    <MenuItem value="Operations">Operations</MenuItem>
+                  </Select>
+                </FormControl>
+
+                {/* Skill Input */}
+                <TextField
+                  label="Add a Skill"
+                  variant="outlined"
+                  value={aspiringSkillInput}
+                  onChange={(e) => setAspiringSkillInput(e.target.value)}
+                  onKeyDown={handleAddAspiringSkill}
+                  placeholder="Press Enter to add a skill"
+                  fullWidth
+                  style={{ marginTop: '20px' }}
+                  InputLabelProps={{
+                    style: { color: '#ffffff' },
+                  }}
+                  InputProps={{
+                    style: { color: '#ffffff' },
+                    sx: {
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    },
+                  }}
+                />
+                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  {aspiringSkills.map((skill, index) => (
+                    <Chip
+                      key={index}
+                      label={skill}
+                      onDelete={() => handleDeleteAspiringSkill(skill)}
+                      color="primary"
+                    />
+                  ))}
+                </Box>
               </Paper>
             </Box>
           </Grid>
