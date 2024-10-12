@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Button, Avatar, Tabs, Tab, Input } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
+import CloseIcon from '@mui/icons-material/Close'; // Importing Close Icon
 
 function MatchingPage() {
   const navigate = useNavigate();
@@ -14,8 +15,15 @@ function MatchingPage() {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedFile(file);
+      setSelectedFile({
+        name: file.name,
+        size: file.size, // File size in bytes
+      });
     }
+  };
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null); // Reset selected file
   };
 
   const handleSubmit = async () => {
@@ -98,56 +106,64 @@ function MatchingPage() {
             How It Works:
           </Typography>
 
-          {/* How It Works - Tell Us About Yourself Section */}
-          <Paper
-            style={{
-              padding: '20px',
-              marginBottom: '20px',
-              backgroundColor: '#444444',
-              color: '#ffffff',
-              border: '2px solid #61dafb',
-              borderRadius: '8px',
-            }}
-          >
-            <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
-              Tell Us About Yourself:
-            </Typography>
-            <Typography variant="body1" component="div" style={{ fontFamily: 'Roboto' }}>
-              <ul style={{ paddingLeft: '20px', listStyleType: 'disc' }}>
-                <li>
-                  <strong>Upload Your Resume:</strong> Let us know about your skills, career
-                  aspirations, interests, and the areas you'd like to develop.
-                </li>
-              </ul>
-            </Typography>
-          </Paper>
+          {/* How It Works - Flexbox Layout for Side by Side Containers */}
+          <Box display="flex" justifyContent="space-between">
+            {/* Tell Us About Yourself Section */}
+            <Paper
+              style={{
+                padding: '20px',
+                marginBottom: '20px',
+                backgroundColor: '#444444',
+                color: '#ffffff',
+                border: '2px solid #61dafb',
+                borderRadius: '8px',
+                flex: 1, // Take equal space
+                marginRight: '10px', // Space between containers
+              }}
+            >
+              <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
+                Tell Us About Yourself:
+              </Typography>
+              <Typography variant="body1" component="div" style={{ fontFamily: 'Roboto' }}>
+                <ul style={{ paddingLeft: '20px', listStyleType: 'disc' }}>
+                  <li>
+                    <strong>Upload Your Resume:</strong> Let us know about your skills, career
+                    aspirations, interests, and the areas you'd like to develop.
+                  </li>
+                </ul>
+              </Typography>
+            </Paper>
 
-          {/* How It Works - Intelligent Matching Section */}
-          <Paper
-            style={{
-              padding: '20px',
-              backgroundColor: '#444444',
-              color: '#ffffff',
-              border: '2px solid #61dafb',
-              borderRadius: '8px',
-            }}
-          >
-            <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
-              Intelligent Matching:
-            </Typography>
-            <Typography variant="body1" component="div" style={{ fontFamily: 'Roboto' }}>
-              <ul style={{ paddingLeft: '20px', listStyleType: 'disc' }}>
-                <li>
-                  <strong>AI-Powered Recommendations:</strong> Our advanced AI
-                  analyzes your input to understand your unique needs.
-                </li>
-                <li>
-                  <strong>Personalized Mentor List:</strong> Receive tailored mentor
-                  suggestions who align with your goals and interests.
-                </li>
-              </ul>
-            </Typography>
-          </Paper>
+            {/* Intelligent Matching Section */}
+            <Paper
+              style={{
+                padding: '20px',
+                marginBottom: '20px',
+                backgroundColor: '#444444',
+                color: '#ffffff',
+                border: '2px solid #61dafb',
+                borderRadius: '8px',
+                flex: 1, // Take equal space
+                marginLeft: '10px', // Space between containers
+              }}
+            >
+              <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
+                Intelligent Matching:
+              </Typography>
+              <Typography variant="body1" component="div" style={{ fontFamily: 'Roboto' }}>
+                <ul style={{ paddingLeft: '20px', listStyleType: 'disc' }}>
+                  <li>
+                    <strong>AI-Powered Recommendations:</strong> Our advanced AI
+                    analyzes your input to understand your unique needs.
+                  </li>
+                  <li>
+                    <strong>Personalized Mentor List:</strong> Receive tailored mentor
+                    suggestions who align with your goals and interests.
+                  </li>
+                </ul>
+              </Typography>
+            </Paper>
+          </Box>
 
           <Typography variant="h6" gutterBottom style={{ marginTop: '20px', fontFamily: 'Roboto', fontWeight: 'bold' }}>
             Empower your future by finding the right mentor today!
@@ -161,19 +177,47 @@ function MatchingPage() {
               <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
                 Upload your file (PDF/DOCX):
               </Typography>
-              <Input
-                type="file"
-                inputProps={{ accept: '.pdf, .docx' }}
-                onChange={handleFileUpload}
-                style={{ color: '#ffffff', fontFamily: 'Roboto' }}
-              />
+              <Box display="flex" alignItems="center">
+                <Input
+                  type="file"
+                  inputProps={{ accept: '.pdf, .docx' }}
+                  onChange={handleFileUpload}
+                  style={{ display: 'none' }} // Hide the default file input
+                  id="file-upload"
+                />
+                <label htmlFor="file-upload">
+                  <Button
+                    variant="contained"
+                    component="span"
+                    style={{
+                      backgroundColor: '#61dafb',
+                      color: '#ffffff',
+                      fontFamily: 'Roboto',
+                      fontWeight: 'bold',
+                      marginRight: '10px'
+                    }}
+                  >
+                    Choose File
+                  </Button>
+                </label>
+                {/* Display File Name and Size */}
+                {selectedFile && (
+                  <Typography variant="body1" style={{ color: '#ffffff', fontFamily: 'Roboto', display: 'flex', alignItems: 'center' }}>
+                    {`${selectedFile.name} (${(selectedFile.size / 1024).toFixed(2)} KB)`}
+                    <CloseIcon 
+                      onClick={handleRemoveFile} 
+                      style={{ cursor: 'pointer', marginLeft: '10px', color: '#ff4081' }} // Cross icon
+                    />
+                  </Typography>
+                )}
+              </Box>
             </Paper>
           </Grid>
         </Grid>
 
         {/* Submit Button Section */}
         <Box textAlign="center" marginTop="30px" marginBottom="30px">
-          <Button variant="contained" style={{ backgroundColor: '#61dafb', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold'}} onClick={handleSubmit}>
+          <Button variant="contained" style={{ backgroundColor: '#61dafb', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold' }} onClick={handleSubmit}>
             Submit
           </Button>
         </Box>
