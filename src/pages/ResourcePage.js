@@ -51,7 +51,7 @@ function ResourcePage() {
     const userPrompt = `
       I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
       My current skills include: ${currentSkills.join(', ')}.
-      I aspire to work in the ${aspiringDepartment} department. My aspirations are: ${aspiringInput}.
+      My aspirations are: ${aspiringInput}.
       Provide me with a career pathway.
       Please only reply the skills that I need to learn and the possible courses in point form.
       Do not add any greeting messages.
