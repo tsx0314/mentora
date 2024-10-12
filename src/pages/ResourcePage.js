@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Box, Container, Paper, Button, Avatar, Tabs, Tab, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
-import './ResourcePage.css'; // Custom CSS file for styling
 
 function ResourcePage() {
   const navigate = useNavigate();
@@ -18,14 +17,14 @@ function ResourcePage() {
       setMessages([
         ...messages,
         { text: newMessage, type: 'user' },
-        { text: 'this is interaction test', type: 'bot' }
+        { text: 'This is a response from the bot.', type: 'bot' }
       ]);
       inputElement.value = '';
     }
   };
 
   return (
-    <div style={{ backgroundColor: '#2c2c2c', minHeight: '100vh', padding: '20px' }}>
+    <div style={{ backgroundColor: 'black', minHeight: '100vh', padding: '20px', fontFamily: 'Roboto' }}>
       {/* Header Section */}
       <AppBar position="static" style={{ backgroundColor: '#1b1b1b' }}>
         <Toolbar style={{ justifyContent: 'space-between' }}>
@@ -36,7 +35,7 @@ function ResourcePage() {
               value={currentTab}
               onChange={(event, newValue) => navigate(newValue)}
               textColor="inherit"
-              TabIndicatorProps={{ style: { backgroundColor: '#ffffff' } }}
+              TabIndicatorProps={{ style: { backgroundColor: '#61dafb' } }}
             >
               <Tab
                 label="Match"
@@ -46,6 +45,8 @@ function ResourcePage() {
                 style={{
                   color: currentTab === '/matching' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/matching' ? '#333333' : 'inherit',
+                  fontFamily: 'Roboto',
+                  fontWeight: 'bold',
                 }}
               />
               <Tab
@@ -56,6 +57,8 @@ function ResourcePage() {
                 style={{
                   color: currentTab === '/resources' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/resources' ? '#333333' : 'inherit',
+                  fontFamily: 'Roboto',
+                  fontWeight: 'bold',
                 }}
               />
             </Tabs>
@@ -66,13 +69,13 @@ function ResourcePage() {
       </AppBar>
 
       {/* Main Content */}
-      <Container maxWidth="md" style={{ marginTop: '30px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Container maxWidth="md" style={{ marginTop: '30px', fontFamily: 'Roboto' }}>
         {/* Chat Box Section */}
-        <Paper elevation={3} style={{ width: '100%', height: '500px', padding: '20px', backgroundColor: '#333333', color: '#ffffff', overflowY: 'auto' }}>
-          <Typography variant="h5" gutterBottom>
+        <Paper elevation={3} style={{ width: '100%', height: '500px', padding: '20px', backgroundColor: '#333333', color: '#ffffff', overflowY: 'auto', border: '2px solid #61dafb' }}>
+          <Typography variant="h5" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
             Chat Bot
           </Typography>
-          <div id="chat-box" className="chat-box">
+          <div id="chat-box" style={{ maxHeight: '400px', overflowY: 'auto' }}>
             {/* Render Messages */}
             {messages.map((message, index) => (
               <Box
@@ -83,15 +86,15 @@ function ResourcePage() {
                 style={{ marginBottom: '10px' }}
               >
                 {message.type === 'bot' && (
-                  <Avatar style={{ marginRight: '10px' }}>C</Avatar>
+                  <Avatar style={{ marginRight: '10px', backgroundColor: '#555555', color: '#ffffff' }}>B</Avatar>
                 )}
                 <Paper
                   style={{
                     padding: '10px 15px',
                     borderRadius: '15px',
                     maxWidth: '70%',
-                    backgroundColor: message.type === 'user' ? '#1976d2' : '#aaaaaa',
-                    color: '#ffffff'
+                    backgroundColor: message.type === 'user' ? '#1976d2' : '#444444',
+                    color: '#ffffff',
                   }}
                 >
                   {message.text}
@@ -113,12 +116,12 @@ function ResourcePage() {
             variant="outlined"
             InputProps={{ style: { color: '#ffffff' } }}
             InputLabelProps={{ style: { color: '#ffffff' } }}
-            style={{ backgroundColor: '#444444', borderRadius: '8px' }}
+            style={{ backgroundColor: '#444444', borderRadius: '8px', border: '2px solid #61dafb' }}
           />
           <Button
             variant="contained"
             onClick={handleSendMessage}
-            style={{ marginLeft: '10px', backgroundColor: '#1976d2', color: '#ffffff' }}
+            style={{ marginLeft: '10px', backgroundColor: '#61dafb', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold' }}
           >
             Send
           </Button>

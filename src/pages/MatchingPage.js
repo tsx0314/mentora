@@ -86,7 +86,7 @@ function MatchingPage() {
         {/* File Upload Section */}
         <Grid container spacing={4} style={{ marginBottom: '30px' }}>
           <Grid item xs={12}>
-            <Paper style={{ padding: '20px', backgroundColor: '#444444', color: '#ffffff', borderRadius: '8px' }}>
+            <Paper style={{ padding: '20px', backgroundColor: '#444444', color: '#ffffff', border: '2px solid #61dafb' }}>
               <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
                 Upload your file (PDF/DOCX):
               </Typography>
@@ -102,13 +102,13 @@ function MatchingPage() {
 
         {/* Submit Button Section */}
         <Box textAlign="center" marginTop="30px" marginBottom="30px">
-          <Button variant="contained" style={{ backgroundColor: '#555555', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold' }} onClick={handleSubmit}>
+          <Button variant="contained" style={{ backgroundColor: '#61dafb', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold'}} onClick={handleSubmit}>
             Submit
           </Button>
         </Box>
 
         {/* Output Section */}
-        <Paper style={{ padding: '20px', backgroundColor: '#333333', color: '#ffffff' }}>
+        <Paper style={{ padding: '20px', backgroundColor: '#333333', color: '#ffffff', border: '2px solid #61dafb'}}>
           <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
             Output:
           </Typography>
