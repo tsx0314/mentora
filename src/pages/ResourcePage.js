@@ -54,7 +54,9 @@ function ResourcePage() {
       My aspirations are: ${aspiringInput}.
       Provide me with a career pathway.
       Please only reply the skills that I need to learn and the possible courses in point form.
-      Do not add any greeting messages.
+      Do not add any greeting messages. Do not respond by saying "Sure, here are ...". Omit that starting completely. 
+      Your output format should solely be "Number: skill and platform, followed by a short description of how this skill can help me get to the career". 
+      Format your answer to start a new line for each skill. Give three skills maximum. 
     `;
 
     try {
@@ -307,7 +309,7 @@ function ResourcePage() {
                     backgroundColor: '#111c30', // Background color to match the design
                   }}
                 >
-                  <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+                  <Typography variant="body1" style={{ textAlign: 'left', marginTop: '10px' }}>
                     {gptResponse || 'Please select a department and add skills to generate pathways.'}
                   </Typography>
                 </Box>
