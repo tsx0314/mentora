@@ -184,6 +184,7 @@ function ResourcePage() {
                     onChange={handleCurrentDepartmentChange}
                     label="Department"
                     sx={{
+                      fontFamily:'Myriad',
                       color: '#ffffff',
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
@@ -211,6 +212,7 @@ function ResourcePage() {
                     onChange={(event) => setCurrentExperienceLevel(event.target.value)}
                     label="Experience Level"
                     sx={{
+                      fontFamily:'Myriad',
                       color: '#ffffff',
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
