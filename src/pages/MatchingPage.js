@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Button, Avatar, Tabs, Tab, Input } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
+import CloseIcon from '@mui/icons-material/Close'; // Importing Close Icon
 
 function MatchingPage() {
   const navigate = useNavigate();
@@ -14,8 +15,15 @@ function MatchingPage() {
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setSelectedFile(file);
+      setSelectedFile({
+        name: file.name,
+        size: file.size, // File size in bytes
+      });
     }
+  };
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null); // Reset selected file
   };
 
   const handleSubmit = async () => {
