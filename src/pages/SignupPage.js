@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth methods
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const SignupPage = () => {
     const [email, setEmail] = useState('');  // State to store email input
