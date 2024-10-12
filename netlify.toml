@@ -1,6 +1,3 @@
 [build]
-  command = "npm install && npm install firebase && npm run build"
+  command = "npm install && npm run build"
   publish = "build"
-
-[build.environment]
-  NODE_VERSION = "16"  # You can specify the Node.js version if needed.
