@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Button, Avatar, Tabs, Tab, Input } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
-import CloseIcon from '@mui/icons-material/Close'; // Importing Close Icons
+import CloseIcon from '@mui/icons-material/Close'; // Importing Close Icon
 
 import axios from 'axios';
 import mammoth from 'mammoth'; // For DOCX processing
@@ -11,15 +11,14 @@ import * as pdfjsLib from 'pdfjs-dist'; // For PDF parsing
 import { collection, getDocs } from "firebase/firestore"; // Firestore methods
 import { db } from "../firebase"; // Firebase config
 
-
 function MatchingPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentTab = location.pathname;
 
   const [selectedFile, setSelectedFile] = useState(null); // Now stores actual file object
-  const [output, setOutput] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [output, setOutput] = useState(''); // To store the result from GPT-4
+  const [loading, setLoading] = useState(false); // To handle loading states
 
   // Handle file upload and store the actual file object
   const handleFileUpload = (event) => {
@@ -66,7 +65,7 @@ function MatchingPage() {
     }
   };
 
-  // Fecth from firebase
+  // Fetch mentors from Firebase
   const fetchMentors = async () => {
     const mentorsCollection = collection(db, "mentors"); // Collection is 'mentors'
     const mentorsSnapshot = await getDocs(mentorsCollection);
@@ -88,6 +87,7 @@ function MatchingPage() {
       const fileType = selectedFile.type;
 
       console.log('Uploaded file type:', fileType);
+      console.log("OpenAI API Key:", process.env.REACT_APP_OPENAI_API_KEY);
 
       // Extract text based on file type
       if (fileType === 'application/pdf') {
@@ -100,6 +100,7 @@ function MatchingPage() {
       } else {
         return alert('Unsupported file type. Please upload a PDF or DOCX file.');
       }
+
       // Step 1: Call GPT-4 API to extract skills from the resume
       const gptResponse = await axios.post(
         'https://api.openai.com/v1/chat/completions',
@@ -132,7 +133,7 @@ function MatchingPage() {
         {
           model: 'gpt-4', // or 'gpt-4-turbo'
           messages: [
-            { role: 'system', content: 'You are a matchmaker. Based on the following extracted skillsets from the resume and the mentor list, find the most possible mentor. They need to have similar skillsets.' },
+            { role: 'system', content: 'You are a matchmaker. Based on the following extracted skillsets from the resume and the mentor list, find two most possible mentors. They need to have similar skillsets with mentee. Only provide the two recommendation mentors as a JSON array, including all the data of the mentor in the database.'},
             { role: 'user', content: `Skills: ${extractedSkills.join(", ")} Mentors: ${JSON.stringify(mentors.map(mentor => ({ name: mentor.name, email: mentor.email, skills: mentor.skills })))}.` }
           ],
           temperature: 0.2,
@@ -145,6 +146,8 @@ function MatchingPage() {
       });
 
       const bestMatch = matchResponse.data.choices[0].message.content;
+
+
       console.log("Best Matched Mentor:", bestMatch);
       
       // Display the best match
@@ -212,7 +215,7 @@ function MatchingPage() {
           }}
         >
           <Typography variant="h5" style={{ fontFamily: 'Myriad', textAlign: 'center', fontWeight: 'bold' }}>
-            Welcome to Your Mentorship Matchmaking Hub
+            Mentorship Matching
           </Typography>
           <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
             Ready to grow? Upload your resume and find the perfect mentor tailored to your career aspirations.
@@ -291,25 +294,33 @@ function MatchingPage() {
                   </Box>
 
                   {/* Centered Submit Button */}
+                  {/* Centered Submit Button or Processing Message */}
                   <Box display="flex" justifyContent="center" marginTop="10px">
-                    <Button
-                      variant="contained"
-                      style={{
-                        backgroundColor: '#61dafb',
-                        color: '#0A0F1F',
-                        fontFamily: 'Myriad',
-                        fontWeight: 'bold',
-                        padding: '10px 20px', // Shorter padding
-                        marginBottom: '10px',
-                        borderRadius: '30px',
-                        fontSize: '1rem',
-                        width: '300px', // 
-                      }}
-                      onClick={handleSubmit}
-                    >
-                      Submit
-                    </Button>
+                    {loading ? (
+                      <Typography variant="body1" style={{ color: '#61dafb', fontFamily: 'Myriad', fontWeight: 'bold' }}>
+                        Processing...
+                      </Typography>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        style={{
+                          backgroundColor: '#61dafb',
+                          color: '#0A0F1F',
+                          fontFamily: 'Myriad',
+                          fontWeight: 'bold',
+                          padding: '10px 20px', // Shorter padding
+                          marginBottom: '10px',
+                          borderRadius: '30px',
+                          fontSize: '1rem',
+                          width: '300px',
+                        }}
+                        onClick={handleSubmit}
+                      >
+                        Submit
+                      </Button>
+                    )}
                   </Box>
+
                 </Box>
               </Paper>
             </Box>
@@ -338,8 +349,8 @@ function MatchingPage() {
                 <Paper
                   elevation={3}
                   style={{
-                    width: '90%',  // Matches the width of the outer container
-                    height: '100%',  // Increased height by 1/5
+                    width: '90%', 
+                    height: '100%',  
                     padding: '20px',
                     backgroundColor: '#222b3d',
                     color: '#ffffff',
@@ -351,10 +362,29 @@ function MatchingPage() {
                     marginBottom: '10px',
                   }}
                 >
-                  <Typography variant="body1" style={{ textAlign: 'center' }}>
-                    {output ? output : 'Your mentor match will appear here.'}
-                  </Typography>
+                  {output ? (
+                    <Box>
+                      {JSON.parse(output).map((mentor, index) => (
+                        <Box key={index} style={{ marginBottom: '20px', borderBottom: '1px solid #61dafb', paddingBottom: '10px' }}>
+                          <Typography variant="h6" style={{ fontWeight: 'bold', color: '#61dafb' }}>
+                            {mentor.name}
+                          </Typography>
+                          <Typography variant="body1" style={{ color: '#ffffff' }}>
+                            <strong>Email:</strong> {mentor.email}
+                          </Typography>
+                          <Typography variant="body1" style={{ color: '#ffffff' }}>
+                            <strong>Skills:</strong> {mentor.skills.join(', ')}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box>
+                  ) : (
+                    <Typography variant="body1" style={{ textAlign: 'center' }}>
+                      Your mentor match will appear here.
+                    </Typography>
+                  )}
                 </Paper>
+
               </Paper>
             </Box>
           </Grid>
