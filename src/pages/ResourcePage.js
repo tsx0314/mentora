@@ -5,6 +5,7 @@ import {
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
+import axios from 'axios';
 
 function ResourcePage() {
   const navigate = useNavigate();
@@ -18,10 +19,10 @@ function ResourcePage() {
   const [currentExperienceLevel, setCurrentExperienceLevel] = useState('');
 
   // State for right column (Aspiring)
-  const [aspiringDepartment, setAspiringDepartment] = useState('');
-  const [aspiringSkills, setAspiringSkills] = useState([]);
-  const [aspiringSkillInput, setAspiringSkillInput] = useState('');
   const [aspiringInput, setAspiringInput] = useState(''); // State for aspiration text input
+
+  // State for GPT response
+  const [gptResponse, setGptResponse] = useState('');
 
   // Handle changes to current department
   const handleCurrentDepartmentChange = (event) => {
@@ -31,11 +32,10 @@ function ResourcePage() {
   // Handle adding a current skill
   const handleAddCurrentSkill = (event) => {
     if (event.key === 'Enter' && currentSkillInput.trim()) {
-      // Add the skill if it's not already in the list
       if (!currentSkills.includes(currentSkillInput.trim())) {
         setCurrentSkills([...currentSkills, currentSkillInput.trim()]);
       }
-      setCurrentSkillInput(''); // Clear input field
+      setCurrentSkillInput('');
     }
   };
 
@@ -44,31 +44,44 @@ function ResourcePage() {
     setCurrentSkills(currentSkills.filter((skill) => skill !== skillToDelete));
   };
 
-  // Handle changes to aspiring department
-  const handleAspiringDepartmentChange = (event) => {
-    setAspiringDepartment(event.target.value);
-  };
+  // Function to submit aspirations and generate a career pathway
+  const handleAspirationSubmit = async () => {
+    const systemPrompt = `You are an expert career advisor. You help users identify necessary skills and courses based on their current role and their career aspirations.`;
 
-  // Handle adding an aspiring skill
-  const handleAddAspiringSkill = (event) => {
-    if (event.key === 'Enter' && aspiringSkillInput.trim()) {
-      // Add the skill if it's not already in the list
-      if (!aspiringSkills.includes(aspiringSkillInput.trim())) {
-        setAspiringSkills([...aspiringSkills, aspiringSkillInput.trim()]);
-      }
-      setAspiringSkillInput(''); // Clear input field
+    const userPrompt = `
+      I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
+      My current skills include: ${currentSkills.join(', ')}.
+      My aspirations are: ${aspiringInput}.
+      Provide me with a career pathway.
+      Please only reply the skills that I need to learn and the possible courses in point form.
+      Do not add any greeting messages.
+    `;
+
+    try {
+      const response = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: 'gpt-4',  // Using GPT-4
+          messages: [
+            { role: 'system', content: systemPrompt }, // System message to set context
+            { role: 'user', content: userPrompt }, // User's input and request for advice
+          ],
+          temperature: 0.7, // Control creativity and randomness in responses
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+          }
+        }
+      );
+
+      // Set GPT-4 response to state to display in the middle column
+      setGptResponse(response.data.choices[0].message.content);
+
+    } catch (error) {
+      console.error('Error calling GPT-4 API:', error);
     }
-  };
-
-  // Handle deleting an aspiring skill
-  const handleDeleteAspiringSkill = (skillToDelete) => {
-    setAspiringSkills(aspiringSkills.filter((skill) => skill !== skillToDelete));
-  };
-
-  // Handle submit action for Aspiration text box
-  const handleAspirationSubmit = () => {
-    console.log('Aspiration:', aspiringInput); // You can handle the input submission here
-    setAspiringInput(''); // Clear the text box after submission
   };
 
   return (
@@ -283,27 +296,20 @@ function ResourcePage() {
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Your Career Pathway
                 </Typography>
-                <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
-                  {/* Career pathway generation logic would be implemented here */}
-                  {currentDepartment && currentSkills.length > 0 ? 
-                    `Based on your current department (${currentDepartment}) and skills: ${currentSkills.join(', ')}, here are your potential pathways!` : 
-                    'Please select a department and add skills to generate pathways.'}
-                </Typography>
-                {/* Scrollable Text Box */}
-              <Box style={{
-                backgroundColor: '#0A0F1F',
-                padding: '20px',
-                borderRadius: '10px',
-                color: 'white',
-                height: '200px', // Fixed height for scroll
-                overflowY: 'scroll',
-                border: '1px solid #61dafb',
-                width: '90%'
-              }}>
-                <Typography variant="body1" style={{ color: 'white' }}>
-                  This is a scrollable content area. 
-                </Typography>
-              </Box>
+                <Box
+                  sx={{
+                    height: '200px', // Set the height as needed
+                    overflowY: 'auto', // Enable vertical scrolling
+                    padding: '10px',
+                    border: '1px solid #61dafb', // Optional: to differentiate the scrolling box
+                    borderRadius: '5px', // Optional: add some border-radius for a better look
+                    backgroundColor: '#111c30', // Background color to match the design
+                  }}
+                >
+                  <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+                    {gptResponse || 'Please select a department and add skills to generate pathways.'}
+                  </Typography>
+                </Box>
               </Paper>
             </Box>
           </Grid>
@@ -364,8 +370,8 @@ function ResourcePage() {
                       '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
                       },
-                    },
-                  }}
+                    }}
+                  }
                 />
 
                 {/* Submit Button */}
