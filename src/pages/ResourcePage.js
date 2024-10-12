@@ -19,12 +19,9 @@ function ResourcePage() {
   const [currentExperienceLevel, setCurrentExperienceLevel] = useState('');
 
   // State for right column (Aspiring)
-  const [aspiringDepartment, setAspiringDepartment] = useState('');
-  const [aspiringSkills, setAspiringSkills] = useState([]);
-  const [aspiringSkillInput, setAspiringSkillInput] = useState('');
-  const [aspiringInput, setAspiringInput] = useState('');
+  const [aspiringInput, setAspiringInput] = useState(''); // State for aspiration text input
 
-  // State for GPT API response
+  // State for GPT response
   const [gptResponse, setGptResponse] = useState('');
 
   // Handle changes to current department
@@ -47,26 +44,6 @@ function ResourcePage() {
     setCurrentSkills(currentSkills.filter((skill) => skill !== skillToDelete));
   };
 
-  // Handle changes to aspiring department
-  const handleAspiringDepartmentChange = (event) => {
-    setAspiringDepartment(event.target.value);
-  };
-
-  // Handle adding an aspiring skill
-  const handleAddAspiringSkill = (event) => {
-    if (event.key === 'Enter' && aspiringSkillInput.trim()) {
-      if (!aspiringSkills.includes(aspiringSkillInput.trim())) {
-        setAspiringSkills([...aspiringSkills, aspiringSkillInput.trim()]);
-      }
-      setAspiringSkillInput('');
-    }
-  };
-
-  // Handle deleting an aspiring skill
-  const handleDeleteAspiringSkill = (skillToDelete) => {
-    setAspiringSkills(aspiringSkills.filter((skill) => skill !== skillToDelete));
-  };
-
   // Function to submit aspirations and generate a career pathway
   const handleAspirationSubmit = async () => {
     const systemPrompt = `You are an expert career advisor. You help users identify necessary skills and courses based on their current role and their career aspirations.`;
@@ -74,7 +51,6 @@ function ResourcePage() {
     const userPrompt = `
       I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
       My current skills include: ${currentSkills.join(', ')}.
-      
       I aspire to work in the ${aspiringDepartment} department. My aspirations are: ${aspiringInput}.
       Provide me with a career pathway.
       Please only reply the skills that I need to learn and the possible courses in point form, and do not add any greeting messages.
