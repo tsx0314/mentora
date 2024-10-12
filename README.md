@@ -21,7 +21,7 @@ Future-Ready Workforce
 
 In today’s fast-changing business environment, PSA is committed to building an empowered and diverse workforce, capable of thriving amid constant transformation.
 
-Key focus areas
+#### Key focus areas
 Multi-generational Workforce Engagement
 Data-driven Career Pathway
 Technology-driven Initiatives that enhance well-being and promote equity and inclusion. 
