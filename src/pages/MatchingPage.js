@@ -1,5 +1,5 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Box, TextField, Grid, Container, Paper, Button, Avatar, Tabs, Tab } from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Button, Avatar, Tabs, Tab, Input } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
 
@@ -7,6 +7,34 @@ function MatchingPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentTab = location.pathname;
+
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [output, setOutput] = useState('');
+
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (selectedFile) {
+      // Placeholder: Integrate GPT API here to process the file
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      // Call GPT API to extract skills from the file (implementation not included)
+      // Example:
+      // const response = await extractSkillsFromFile(formData);
+      // setOutput(response.data.skills);
+
+      // For now, simulate output
+      setOutput(`Extracted skills from ${selectedFile.name}`);
+    } else {
+      setOutput('No file selected');
+    }
+  };
 
   return (
     <div style={{ backgroundColor: '#2c2c2c', minHeight: '100vh', padding: '20px' }}>
@@ -57,29 +85,30 @@ function MatchingPage() {
             Intro:
           </Typography>
           <Typography variant="body1">
-            Your introduction text goes here. You can describe what this page is about or provide instructions for the user.
+            Please upload your resume to match your mentor.
           </Typography>
         </Paper>
 
-        {/* Input Fields Section */}
+        {/* File Upload Section */}
         <Grid container spacing={4} style={{ marginBottom: '30px' }}>
-          {['Field 1', 'Field 2', 'Field 3', 'Field 4', 'Field 5', 'Field 6'].map((field, index) => (
-            <Grid item xs={12} sm={6} key={index}>
-              <TextField
-                fullWidth
-                label={field}
-                variant="outlined"
-                InputProps={{ style: { color: '#ffffff' } }}
-                InputLabelProps={{ style: { color: '#ffffff' } }}
-                style={{ backgroundColor: '#444444', borderRadius: '8px' }}
+          <Grid item xs={12}>
+            <Paper style={{ padding: '20px', backgroundColor: '#444444', color: '#ffffff', borderRadius: '8px' }}>
+              <Typography variant="h6" gutterBottom>
+                Upload your file (PDF/DOCX):
+              </Typography>
+              <Input
+                type="file"
+                inputProps={{ accept: '.pdf, .docx' }}
+                onChange={handleFileUpload}
+                style={{ color: '#ffffff' }}
               />
-            </Grid>
-          ))}
+            </Paper>
+          </Grid>
         </Grid>
 
         {/* Submit Button Section */}
         <Box textAlign="center" marginTop="30px" marginBottom="30px">
-          <Button variant="contained" style={{ backgroundColor: '#555555', color: '#ffffff' }}>
+          <Button variant="contained" style={{ backgroundColor: '#555555', color: '#ffffff' }} onClick={handleSubmit}>
             Submit
           </Button>
         </Box>
@@ -89,16 +118,7 @@ function MatchingPage() {
           <Typography variant="h6" gutterBottom>
             Output:
           </Typography>
-          <TextField
-            fullWidth
-            variant="outlined"
-            multiline
-            rows={6}
-            placeholder="Output will be displayed here..."
-            InputProps={{ style: { color: '#ffffff' } }}
-            InputLabelProps={{ style: { color: '#ffffff' } }}
-            style={{ backgroundColor: '#444444', borderRadius: '8px' }}
-          />
+          <Typography variant="body1">{output}</Typography>
         </Paper>
       </Container>
     </div>
