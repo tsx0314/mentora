@@ -15,11 +15,13 @@ function ResourcePage() {
   const [currentDepartment, setCurrentDepartment] = useState('');
   const [currentSkills, setCurrentSkills] = useState([]);
   const [currentSkillInput, setCurrentSkillInput] = useState('');
+  const [currentExperienceLevel, setCurrentExperienceLevel] = useState('');
 
   // State for right column (Aspiring)
   const [aspiringDepartment, setAspiringDepartment] = useState('');
   const [aspiringSkills, setAspiringSkills] = useState([]);
   const [aspiringSkillInput, setAspiringSkillInput] = useState('');
+
 
   // Handle changes to current department
   const handleCurrentDepartmentChange = (event) => {
@@ -136,7 +138,6 @@ function ResourcePage() {
               <Paper
                 elevation={3}
                 style={{
-                  marginRight: '20px',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -177,6 +178,33 @@ function ResourcePage() {
                     <MenuItem value="Human Resources">Human Resources</MenuItem>
                     <MenuItem value="Finance">Finance</MenuItem>
                     <MenuItem value="Operations">Operations</MenuItem>
+                  </Select>
+                </FormControl>
+
+                {/* Experience Level Dropdown */}
+                <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
+                  <InputLabel style={{ color: '#ffffff' }}>Experience Level</InputLabel>
+                  <Select
+                    value={currentExperienceLevel}
+                    onChange={(event) => setCurrentExperienceLevel(event.target.value)}
+                    label="Experience Level"
+                    sx={{
+                      color: '#ffffff',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    }}
+                  >
+                    <MenuItem value="Fresh Graduate">Fresh Graduate</MenuItem>
+                    <MenuItem value="Junior">Junior</MenuItem>
+                    <MenuItem value="Senior">Senior</MenuItem>
+                    <MenuItem value="Director and above">Director and above</MenuItem>
                   </Select>
                 </FormControl>
 
@@ -224,7 +252,7 @@ function ResourcePage() {
 
           {/* Arrow between Left and Middle Column */}
           <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-40px', marginRight: '-15px' }} />
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-10px', marginRight: '-30px' }} />
           </Grid>
 
           {/* Middle Column - Output */}
@@ -261,7 +289,7 @@ function ResourcePage() {
 
           {/* Arrow between Middle Column and Right Column */}
           <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-40px', marginRight: '-15px', transform: 'rotate(180deg)' }} />
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-10px', marginRight: '-30px'  }} />
           </Grid>
 
           {/* Right Column - Aspiring */}
