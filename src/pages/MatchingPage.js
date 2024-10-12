@@ -182,10 +182,11 @@ function MatchingPage() {
                         color: '#0A0F1F',
                         fontFamily: 'Myriad',
                         fontWeight: 'bold',
-                        padding: '5px 10px', // Shorter padding
+                        padding: '10px 20px', // Shorter padding
+                        marginBottom: '10px',
                         borderRadius: '30px',
                         fontSize: '1rem',
-                        width: '100%', // Set to 100% to match the width of the text above
+                        width: '300px', // 
                       }}
                       onClick={handleSubmit}
                     >
@@ -221,8 +222,8 @@ function MatchingPage() {
                 <Paper
                   elevation={3}
                   style={{
-                    width: '90%',  // Longer inner box
-                    height: '240px',  // Increased height by 1/5
+                    width: '90%',  // Matches the width of the outer container
+                    height: '100%',  // Increased height by 1/5
                     padding: '20px',
                     backgroundColor: '#222b3d',
                     color: '#ffffff',
@@ -231,7 +232,7 @@ function MatchingPage() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     marginTop: '20px',
-                    marginBottom: '20px',
+                    marginBottom: '10px',
                   }}
                 >
                   <Typography variant="body1" style={{ textAlign: 'center' }}>
