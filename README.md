@@ -1,6 +1,4 @@
-# Mentora 
-## by PSA Code Sprint 2024 Team 126 LTYZ
-![Landing Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1317).png)
+# Mentora by PSA Code Sprint 2024 Team 126 LTYZ
 Mentora is an advanced Mentorship Matchmaking App designed to reinforce PSA's commitment to fostering a diverse and engaged workforce. 
 
 Utilizing cutting-edge data and AI-driven solutions, the app intelligently pairs employees with possible mentors within the institution based on their backgrounds and skill sets, thereby fostering a collaborative environment where knowledge sharing and supporting employees across all generations in their professional development.
@@ -20,6 +18,15 @@ Technology-driven Initiatives that enhance well-being and promote equity and inc
 The goal is to enhance PSA's capacity to cultivate a highly engaged and diverse workforce by developing innovative, data and AI-driven solutions that promote continuous learning and belonging, supporting employees of all generations and driving long-term success in the dynamic port ecosystem.
 
 ## User Guide
+On the landing page, click on "Sign Up" sign up an account
+
+![Landing Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1321).png)
+If you already have an account click on "Log In" button to log in.
+![Login Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1318).png)
+You can upload a DOCX word document resume to get matched to a mentor with similar skillsets. 
+This promotes continuous learning and cross-generational employee engaging.
+The match-making process is powered by AI! 
+![MM Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1320).png)
 
 # Getting Started with Create React App
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
