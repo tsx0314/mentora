@@ -14,7 +14,7 @@ const LoginPage = () => {
         event.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
+                //const user = userCredential.user;
                 navigate('/matching');
             })
             .catch((error) => {

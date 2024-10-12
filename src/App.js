@@ -1,7 +1,6 @@
 import React from 'react';
 import { Button, Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { AuthProvider } from './utils/AuthContext';
 import './App.css';
 // Import the logo image
 import logo from './image.png';
