@@ -27,13 +27,13 @@ function MatchingPage() {
   };
 
   return (
-    <div style={{ backgroundColor: 'black', minHeight: '100vh', padding: '20px', fontFamily: 'Roboto' }}>
+    <div style={{ backgroundColor: '#0A0F1F', minHeight: '100vh', fontFamily: 'Myriad' }}>
       {/* Header Section with Tabs */}
-      <AppBar position="static" style={{ backgroundColor: '#1b1b1b' }}>
+      <AppBar position="static" style={{ backgroundColor: '#161A2A' }}>
         <Toolbar style={{ justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center">
             {/* Logo Image */}
-            <Avatar src={require('../psa_logo.png')} alt="Logo" style={{ marginRight: '20px' }} />
+            <Avatar src={require('../logo1.png')} alt="Logo" style={{ marginRight: '20px' }} /> {/* Updated logo1.png */}
             <Tabs
               value={currentTab}
               onChange={(event, newValue) => navigate(newValue)}
@@ -48,7 +48,7 @@ function MatchingPage() {
                 style={{
                   color: currentTab === '/matching' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/matching' ? '#333333' : 'inherit',
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Myriad',
                   fontWeight: 'bold',
                 }}
               />
@@ -60,7 +60,7 @@ function MatchingPage() {
                 style={{
                   color: currentTab === '/resources' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/resources' ? '#333333' : 'inherit',
-                  fontFamily: 'Roboto',
+                  fontFamily: 'Myriad',
                   fontWeight: 'bold',
                 }}
               />
@@ -71,96 +71,128 @@ function MatchingPage() {
         </Toolbar>
       </AppBar>
 
-      {/* Main Content */}
-      <Container maxWidth="md" style={{ marginTop: '30px', fontFamily: 'Roboto' }}>
-        {/* Intro Section */}
-      <Paper
-        style={{
-          padding: '20px',
-          marginBottom: '30px',
-          backgroundColor: '#333333',
-          color: '#ffffff',
-          fontFamily: 'Roboto',
-          border: '2px solid #61dafb'
-        }}
-      >
-        <Typography variant="h5" gutterBottom>
-          Welcome to Your Mentorship Matchmaking Hub!
-        </Typography>
+      {/* Full-Width Introduction Section */}
+      <Container maxWidth="lg" style={{ marginTop: '30px', marginBottom: '30px', fontFamily: 'Myriad' }}>
+        <Paper
+          elevation={3}
+          style={{
+            padding: '20px',
+            backgroundColor: '#111c30',
+            color: '#ffffff',
+            borderRadius: '10px',
+            border: '2px solid #61dafb',
+          }}
+        >
+          <Typography variant="h5" style={{ fontFamily: 'Myriad', textAlign: 'center', fontWeight: 'bold' }}>
+            Welcome to Your Mentorship Matchmaking Hub
+          </Typography>
+          <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+            Ready to grow? Upload your resume and find the perfect mentor tailored to your career aspirations.
+          </Typography>
+        </Paper>
+      </Container>
 
-        <Typography variant="body1" paragraph>
-          Embark on a journey of growth and discovery with our personalized mentorship
-          matching platform. We're excited to help you connect with mentors who can
-          guide you toward achieving your professional goals.
-        </Typography>
+      {/* Main Content with Two Columns */}
+      <Container maxWidth="lg">
+        <Grid container spacing={4}>
+          {/* Left Column: Step 1 - Upload Resume */}
+          <Grid item xs={12} md={6}>
+            <Box display="flex" flexDirection="column" justifyContent="center" height="100%">
+              <Paper
+                elevation={3}
+                style={{
+                  padding: '20px',
+                  backgroundColor: '#111c30',
+                  color: '#ffffff',
+                  borderRadius: '10px',
+                  border: '2px solid #61dafb',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  height: 'calc(100vh - 300px)', // Slightly longer height
+                }}
+              >
+                <Avatar src={require('../logo1.png')} alt="Upload Logo" style={{ width: '60px', height: '60px' }} />
+                <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
+                  Upload Resume
+                </Typography>
 
-        <Typography variant="h6" gutterBottom>
-          How It Works:
-        </Typography>
+                {/* The start of this description is aligned with the inner text box in the right box */}
+                <Box display="flex" flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
+                  <Typography variant="body1" style={{ textAlign: 'center' }}>
+                    Upload your resume for us to analyze your skills and provide personalized mentor matches.
+                  </Typography>
+                  <Input
+                    type="file"
+                    inputProps={{ accept: '.pdf, .docx' }}
+                    onChange={handleFileUpload}
+                    style={{ color: '#ffffff', marginBottom: '20px', fontFamily: 'Myriad' }}
+                  />
+                  <Button
+                    variant="contained"
+                    style={{
+                      backgroundColor: '#61dafb',
+                      color: '#0A0F1F',
+                      fontFamily: 'Myriad',
+                      fontWeight: 'bold',
+                      padding: '10px 30px',
+                      borderRadius: '30px',
+                      fontSize: '1rem',
+                    }}
+                    onClick={handleSubmit}
+                  >
+                    Submit
+                  </Button>
+                </Box>
+              </Paper>
+            </Box>
+          </Grid>
 
-        <Typography variant="body1" component="div">
-          <ol>
-            <li>
-              <strong>Tell Us About Yourself:</strong>
-              <ul>
-                <li>
-                  <strong>Upload Your Resume:</strong> Let us know about your skills, career
-                  aspirations, interests, and the areas you'd like to develop.
-                </li>
-              </ul>
-            </li>
-            <li>
-              <strong>Intelligent Matching:</strong>
-              <ul>
-                <li>
-                  <strong>AI-Powered Recommendations:</strong> Our advanced AI
-                  analyzes your input to understand your unique needs.
-                </li>
-                <li>
-                  <strong>Personalized Mentor List:</strong> Receive tailored mentor
-                  suggestions who align with your goals and interests.
-                </li>
-              </ul>
-            </li>
-          </ol>
-        </Typography>
-
-        <Typography variant="h6" gutterBottom style={{ marginTop: '20px' }}>
-          Empower your future by finding the right mentor today!
-        </Typography>
-      </Paper>
-
-        {/* File Upload Section */}
-        <Grid container spacing={4} style={{ marginBottom: '30px' }}>
-          <Grid item xs={12}>
-            <Paper style={{ padding: '20px', backgroundColor: '#444444', color: '#ffffff', border: '2px solid #61dafb' }}>
-              <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
-                Upload your file (PDF/DOCX):
-              </Typography>
-              <Input
-                type="file"
-                inputProps={{ accept: '.pdf, .docx' }}
-                onChange={handleFileUpload}
-                style={{ color: '#ffffff', fontFamily: 'Roboto' }}
-              />
-            </Paper>
+          {/* Right Column: Step 2 - Matching Output */}
+          <Grid item xs={12} md={6}>
+            <Box display="flex" flexDirection="column" justifyContent="center" height="100%">
+              <Paper
+                elevation={3}
+                style={{
+                  padding: '20px',
+                  backgroundColor: '#111c30',
+                  color: '#ffffff',
+                  borderRadius: '10px',
+                  border: '2px solid #61dafb',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  height: 'calc(100vh - 300px)', // Same longer height
+                }}
+              >
+                <Avatar src={require('../logo2.png')} alt="Output Logo" style={{ width: '60px', height: '60px' }} />
+                <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
+                  Matching Output
+                </Typography>
+                <Paper
+                  elevation={3}
+                  style={{
+                    width: '90%',  // Longer inner box
+                    height: '240px',  // Increased height by 1/5
+                    padding: '20px',
+                    backgroundColor: '#222b3d',
+                    color: '#ffffff',
+                    borderRadius: '10px',  // Rounded corners
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    marginTop: '20px',
+                    marginBottom: '20px',
+                  }}
+                >
+                  <Typography variant="body1" style={{ textAlign: 'center' }}>
+                    {output ? output : 'Your mentor match will appear here.'}
+                  </Typography>
+                </Paper>
+              </Paper>
+            </Box>
           </Grid>
         </Grid>
-
-        {/* Submit Button Section */}
-        <Box textAlign="center" marginTop="30px" marginBottom="30px">
-          <Button variant="contained" style={{ backgroundColor: '#61dafb', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold'}} onClick={handleSubmit}>
-            Submit
-          </Button>
-        </Box>
-
-        {/* Output Section */}
-        <Paper style={{ padding: '20px', backgroundColor: '#333333', color: '#ffffff', border: '2px solid #61dafb'}}>
-          <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
-            Output:
-          </Typography>
-          <Typography variant="body1" style={{ fontFamily: 'Roboto' }}>{output}</Typography>
-        </Paper>
       </Container>
     </div>
   );
