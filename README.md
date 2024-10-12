@@ -1,4 +1,15 @@
 # Mentora by PSA Code Sprint 2024 Team 126 LTYZ
+### Tech Stack
+
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=react&logoColor=black)
+![Firebase](https://img.shields.io/badge/-Firebase-FFCA28?style=flat&logo=firebase&logoColor=black)
+![HTML](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/-CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+![Material UI](https://img.shields.io/badge/-MUI-007FFF?style=flat&logo=mui&logoColor=white)
+![Netlify](https://img.shields.io/badge/-Netlify-00C7B7?style=flat&logo=netlify&logoColor=white)
+![GPT-4 API](https://img.shields.io/badge/-GPT--4_API-412991?style=flat&logo=openai&logoColor=white)
+
 Mentora is an advanced Mentorship Matchmaking App designed to reinforce PSA's commitment to fostering a diverse and engaged workforce. 
 
 Utilizing cutting-edge data and AI-driven solutions, the app intelligently pairs employees with possible mentors within the institution based on their backgrounds and skill sets, thereby fostering a collaborative environment where knowledge sharing and supporting employees across all generations in their professional development.
