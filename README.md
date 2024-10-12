@@ -20,7 +20,7 @@ The goal is to enhance PSA's capacity to cultivate a highly engaged and diverse 
 ## User Guide
 On the landing page, click on "Sign Up" sign up an account
 
-![Landing Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1321).png)
+![Landing Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1322).png)
 If you already have an account click on "Log In" button to log in.
 ![Login Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1318).png)
 You can upload a DOCX word document resume to get matched to a mentor with similar skillsets. 
