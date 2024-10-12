@@ -51,9 +51,10 @@ function ResourcePage() {
     const userPrompt = `
       I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
       My current skills include: ${currentSkills.join(', ')}.
-      
-      My aspirations are: ${aspiringInput}.
-      Please provide me with a career pathway, including the skills I need to develop and the courses I should take to reach my goal.
+      I aspire to work in the ${aspiringDepartment} department. My aspirations are: ${aspiringInput}.
+      Provide me with a career pathway.
+      Please only reply the skills that I need to learn and the possible courses in point form.
+      Do not add any greeting messages.
     `;
 
     try {
@@ -296,9 +297,20 @@ function ResourcePage() {
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Your Career Pathway
                 </Typography>
-                <Typography variant="body1" style={{ fontFamily:'Myriad', textAlign: 'center', marginTop: '10px' }}>
-                  {gptResponse || 'Please select a department and add skills to generate pathways.'}
-                </Typography>
+                <Box
+                  sx={{
+                    height: '200px', // Set the height as needed
+                    overflowY: 'auto', // Enable vertical scrolling
+                    padding: '10px',
+                    border: '1px solid #61dafb', // Optional: to differentiate the scrolling box
+                    borderRadius: '5px', // Optional: add some border-radius for a better look
+                    backgroundColor: '#111c30', // Background color to match the design
+                  }}
+                >
+                  <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+                    {gptResponse || 'Please select a department and add skills to generate pathways.'}
+                  </Typography>
+                </Box>
               </Paper>
             </Box>
           </Grid>
