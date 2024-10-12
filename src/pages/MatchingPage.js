@@ -66,6 +66,18 @@ function MatchingPage() {
     }
   };
 
+  // Fecth from firebase
+  const fetchMentors = async () => {
+    const mentorsCollection = collection(db, "mentors"); // Collection is 'mentors'
+    const mentorsSnapshot = await getDocs(mentorsCollection);
+    const mentorsList = mentorsSnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    console.log(mentorsList);
+    return mentorsList;
+  };
+
   // Handle form submission
   const handleSubmit = async () => {
     if (!selectedFile) return alert('Please upload a file first.');
@@ -88,9 +100,8 @@ function MatchingPage() {
       } else {
         return alert('Unsupported file type. Please upload a PDF or DOCX file.');
       }
-
-      // Call GPT-4 API to extract skills
-      const response = await axios.post(
+      // Step 1: Call GPT-4 API to extract skills from the resume
+      const gptResponse = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
           model: 'gpt-4', // or 'gpt-4-turbo'
@@ -103,15 +114,45 @@ function MatchingPage() {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer OPENAPI_KEY`, // Replace with your actual API key
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`, // Use the environment variable for the OpenAI key
         }
       });
 
-      const skills = response.data.choices[0].message.content;
-      setOutput(skills);
+      // Extract skills from GPT response
+      const extractedSkills = gptResponse.data.choices[0].message.content.split(",").map(skill => skill.trim().toLowerCase());
+      console.log("Extracted Skills:", extractedSkills);
+
+      // Step 2: Fetch mentors from Firebase
+      const mentors = await fetchMentors();
+      console.log("Mentors from Firebase:", mentors);
+
+      // Step 3: Use GPT-4 again to match the best mentor based on skills
+      const matchResponse = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: 'gpt-4', // or 'gpt-4-turbo'
+          messages: [
+            { role: 'system', content: 'You are a matchmaker. Based on the following extracted skillsets from the resume and the mentor list, find the most possible mentor. They need to have similar skillsets.' },
+            { role: 'user', content: `Skills: ${extractedSkills.join(", ")} Mentors: ${JSON.stringify(mentors.map(mentor => ({ name: mentor.name, email: mentor.email, skills: mentor.skills })))}.` }
+          ],
+          temperature: 0.2,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`, // Use the environment variable for the OpenAI key
+        }
+      });
+
+      const bestMatch = matchResponse.data.choices[0].message.content;
+      console.log("Best Matched Mentor:", bestMatch);
+      
+      // Display the best match
+      setOutput(bestMatch);
+
     } catch (error) {
-      console.error('Error with GPT-4 API:', error);
-      setOutput('An error occurred while processing the resume.');
+      console.error('Error with GPT-4 API or Firebase:', error);
+      setOutput('An error occurred while processing the resume or fetching mentors.');
     } finally {
       setLoading(false);
     }
