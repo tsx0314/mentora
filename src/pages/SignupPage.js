@@ -26,7 +26,7 @@ const SignupPage = () => {
                 .then(() => {
                     // After login, redirect to the resource page after a 2-second delay
                     setTimeout(() => {
-                        navigate('/resources'); // Redirect to resource page
+                        navigate('/matching'); // Redirect to matching page
                     }, 2000); // Delay for 2 seconds
                 })
             })

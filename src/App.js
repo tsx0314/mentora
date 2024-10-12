@@ -21,10 +21,10 @@ function App() {
       {/* Navigation Links */}
       <Box sx={{ display: 'flex', justifyContent: 'center', gap: '20px', marginTop: '20px' }}>
         <Button variant="contained" color="primary" component={Link} to="/signup" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
-          Signup Page
+          Sign up 
         </Button>
         <Button variant="contained" color="primary" component={Link} to="/login" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
-          Login Page
+          Login 
         </Button>
         {/* <Button variant="contained" color="primary" component={Link} to="/matching" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
           Matching Page
