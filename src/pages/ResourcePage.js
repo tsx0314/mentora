@@ -300,7 +300,7 @@ function ResourcePage() {
                   Your Career Pathway
                 </Typography>
                 <Typography variant="body1" style={{ fontFamily: 'Myriad', textAlign: 'left', marginTop: '10px' }}>
-                    {gptResponse || 'Please select a department and add skills to generate pathways.'}
+                    {'Please select a department and add skills to generate pathways.'}
                 </Typography>
                 <Box
                   sx={{
@@ -314,6 +314,9 @@ function ResourcePage() {
                     alignItems: 'flex-start',
                   }}
                 >
+                <Typography variant="body1" style={{ fontFamily: 'Myriad', textAlign: 'left', marginTop: '10px' }}>
+                    {gptResponse}
+                </Typography>
                 </Box>
               </Paper>
             </Box>
