@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab,
-  Select, MenuItem, FormControl, InputLabel, TextField, Chip
+  Select, MenuItem, FormControl, InputLabel, TextField, Chip, Button
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
@@ -21,7 +21,7 @@ function ResourcePage() {
   const [aspiringDepartment, setAspiringDepartment] = useState('');
   const [aspiringSkills, setAspiringSkills] = useState([]);
   const [aspiringSkillInput, setAspiringSkillInput] = useState('');
-
+  const [aspiringInput, setAspiringInput] = useState(''); // State for aspiration text input
 
   // Handle changes to current department
   const handleCurrentDepartmentChange = (event) => {
@@ -63,6 +63,12 @@ function ResourcePage() {
   // Handle deleting an aspiring skill
   const handleDeleteAspiringSkill = (skillToDelete) => {
     setAspiringSkills(aspiringSkills.filter((skill) => skill !== skillToDelete));
+  };
+
+  // Handle submit action for Aspiration text box
+  const handleAspirationSubmit = () => {
+    console.log('Aspiration:', aspiringInput); // You can handle the input submission here
+    setAspiringInput(''); // Clear the text box after submission
   };
 
   return (
@@ -151,7 +157,7 @@ function ResourcePage() {
               >
                 <Avatar src={require('../junior.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
-                  Current Position
+                  Current Role
                 </Typography>
 
                 {/* Department Dropdown */}
@@ -329,6 +335,50 @@ function ResourcePage() {
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Aspiration
                 </Typography>
+
+                {/* Aspiration Input Text Box */}
+                <TextField
+                  label="Enter your aspiration"
+                  variant="outlined"
+                  value={aspiringInput}
+                  onChange={(e) => setAspiringInput(e.target.value)}
+                  multiline
+                  rows={4}
+                  fullWidth
+                  style={{ marginTop: '20px' }}
+                  InputLabelProps={{
+                    style: { color: '#ffffff' },
+                  }}
+                  InputProps={{
+                    style: { color: '#ffffff' },
+                    sx: {
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    },
+                  }}
+                />
+
+                {/* Submit Button */}
+                <Button
+                  variant="contained"
+                  onClick={handleAspirationSubmit}
+                  style={{
+                    backgroundColor: '#61dafb',
+                    color: '#0A0F1F',
+                    fontWeight: 'bold',
+                    marginTop: '20px',
+                    width: '100%',
+                  }}
+                >
+                  Submit
+                </Button>
 
               </Paper>
             </Box>
