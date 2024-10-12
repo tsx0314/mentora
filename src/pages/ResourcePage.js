@@ -68,7 +68,7 @@ function ResourcePage() {
             { role: 'system', content: systemPrompt }, // System message to set context
             { role: 'user', content: userPrompt }, // User's input and request for advice
           ],
-          temperature: 0.7, // Control creativity and randomness in responses
+          temperature: 0.3, // Control creativity and randomness in responses
         },
         {
           headers: {

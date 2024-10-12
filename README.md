@@ -29,15 +29,44 @@ Technology-driven Initiatives that enhance well-being and promote equity and inc
 The goal is to enhance PSA's capacity to cultivate a highly engaged and diverse workforce by developing innovative, data and AI-driven solutions that promote continuous learning and belonging, supporting employees of all generations and driving long-term success in the dynamic port ecosystem.
 
 ## User Guide
-On the landing page, click on "Sign Up" sign up an account
+
+### Landing Page
+On the landing page, click on the "Sign Up" button to create an account.
 
 ![Landing Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1322).png)
-If you already have an account click on "Log In" button to log in.
+
+### Login Page
+If you already have an account, simply click on the "Log In" button to access your dashboard.
+
 ![Login Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1318).png)
-You can upload a DOCX word document resume to get matched to a mentor with similar skillsets. 
-This promotes continuous learning and cross-generational employee engaging.
-The match-making process is powered by AI! 
+
+### Mentorship Matching
+Our platform empowers users to **cultivate a culture of continuous learning and belonging** by enabling them to upload their DOCX resumes. The system will analyze your resume and match you with mentors in the database who share similar skillsets, making it easier to **identify growth opportunities** and **foster meaningful professional relationships**.
+
+The **match-making process is powered by AI**, ensuring that you are paired with mentors who can guide you on the most relevant learning paths.
+
 ![MM Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1320).png)
+
+### Career Pathway Generator
+
+The **Career Pathway Generator** is designed to help you take the next step in your career. You can input your current role and the role you aspire to, and the system will generate a list of **skills** you need to develop and recommend **learning resources**.
+
+This feature is **AI-powered**, meaning it analyzes your input and provides highly accurate suggestions. The system is designed to be **acute** and **efficient**, ensuring that you receive the most relevant pathways and opportunities to upskill.
+
+By using this tool, you can **identify growth opportunities** in your career and take actionable steps toward achieving your goals.
+
+#### Resource Page Screenshot
+
+![Resource Page](public/resource.png)
+
+### Why Choose This Platform?
+- **AI-powered Learning:** Our platform leverages **AI** to offer precise recommendations and mentorship connections based on your skills and goals.
+- **Continuous Learning Culture:** We aim to **cultivate a culture of continuous learning and belonging** by connecting professionals with mentors and providing personalized career pathways.
+- **Identify Growth Opportunities:** Whether you're looking to enhance your current role or move into a new position, our system helps you **identify growth opportunities** by offering skill-building recommendations and learning resources tailored to your aspirations.
+
+### Get Started Today
+Join us and take charge of your career development. With our **AI-powered** platform, you can **cultivate a culture of continuous learning** in your organization while taking action to **identify growth opportunities** and advance your career.
+
 
 # Getting Started with Our Web App
 [Link to the Deployed App](https://symphonious-cascaron-96b516.netlify.app/)
