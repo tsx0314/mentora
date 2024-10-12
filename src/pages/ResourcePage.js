@@ -11,30 +11,56 @@ function ResourcePage() {
   const location = useLocation();
   const currentTab = location.pathname;
 
-  // State for department and skillset
-  const [department, setDepartment] = useState('');
-  const [skills, setSkills] = useState([]);
-  const [skillInput, setSkillInput] = useState('');
+  // State for left column (Current)
+  const [currentDepartment, setCurrentDepartment] = useState('');
+  const [currentSkills, setCurrentSkills] = useState([]);
+  const [currentSkillInput, setCurrentSkillInput] = useState('');
 
-  // Handle changes to department
-  const handleDepartmentChange = (event) => {
-    setDepartment(event.target.value);
+  // State for right column (Aspiring)
+  const [aspiringDepartment, setAspiringDepartment] = useState('');
+  const [aspiringSkills, setAspiringSkills] = useState([]);
+  const [aspiringSkillInput, setAspiringSkillInput] = useState('');
+
+  // Handle changes to current department
+  const handleCurrentDepartmentChange = (event) => {
+    setCurrentDepartment(event.target.value);
   };
 
-  // Handle adding a skill
-  const handleAddSkill = (event) => {
-    if (event.key === 'Enter' && skillInput.trim()) {
+  // Handle adding a current skill
+  const handleAddCurrentSkill = (event) => {
+    if (event.key === 'Enter' && currentSkillInput.trim()) {
       // Add the skill if it's not already in the list
-      if (!skills.includes(skillInput.trim())) {
-        setSkills([...skills, skillInput.trim()]);
+      if (!currentSkills.includes(currentSkillInput.trim())) {
+        setCurrentSkills([...currentSkills, currentSkillInput.trim()]);
       }
-      setSkillInput(''); // Clear input field
+      setCurrentSkillInput(''); // Clear input field
     }
   };
 
-  // Handle deleting a skill
-  const handleDeleteSkill = (skillToDelete) => {
-    setSkills(skills.filter((skill) => skill !== skillToDelete));
+  // Handle deleting a current skill
+  const handleDeleteCurrentSkill = (skillToDelete) => {
+    setCurrentSkills(currentSkills.filter((skill) => skill !== skillToDelete));
+  };
+
+  // Handle changes to aspiring department
+  const handleAspiringDepartmentChange = (event) => {
+    setAspiringDepartment(event.target.value);
+  };
+
+  // Handle adding an aspiring skill
+  const handleAddAspiringSkill = (event) => {
+    if (event.key === 'Enter' && aspiringSkillInput.trim()) {
+      // Add the skill if it's not already in the list
+      if (!aspiringSkills.includes(aspiringSkillInput.trim())) {
+        setAspiringSkills([...aspiringSkills, aspiringSkillInput.trim()]);
+      }
+      setAspiringSkillInput(''); // Clear input field
+    }
+  };
+
+  // Handle deleting an aspiring skill
+  const handleDeleteAspiringSkill = (skillToDelete) => {
+    setAspiringSkills(aspiringSkills.filter((skill) => skill !== skillToDelete));
   };
 
   return (
@@ -127,13 +153,12 @@ function ResourcePage() {
                   Current
                 </Typography>
 
-                
                 {/* Department Dropdown */}
                 <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
                   <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
                   <Select
-                    value={department}
-                    onChange={handleDepartmentChange}
+                    value={currentDepartment}
+                    onChange={handleCurrentDepartmentChange}
                     label="Department"
                     sx={{
                       color: '#ffffff',
@@ -154,13 +179,14 @@ function ResourcePage() {
                     <MenuItem value="Operations">Operations</MenuItem>
                   </Select>
                 </FormControl>
+
                 {/* Skill Input */}
                 <TextField
                   label="Add a Skill"
                   variant="outlined"
-                  value={skillInput}
-                  onChange={(e) => setSkillInput(e.target.value)}
-                  onKeyDown={handleAddSkill}
+                  value={currentSkillInput}
+                  onChange={(e) => setCurrentSkillInput(e.target.value)}
+                  onKeyDown={handleAddCurrentSkill}
                   placeholder="Press Enter to add a skill"
                   fullWidth
                   style={{ marginTop: '20px' }}
@@ -183,11 +209,11 @@ function ResourcePage() {
                   }}
                 />
                 <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  {skills.map((skill, index) => (
+                  {currentSkills.map((skill, index) => (
                     <Chip
                       key={index}
                       label={skill}
-                      onDelete={() => handleDeleteSkill(skill)}
+                      onDelete={() => handleDeleteCurrentSkill(skill)}
                       color="primary"
                     />
                   ))}
@@ -208,7 +234,6 @@ function ResourcePage() {
                 elevation={3}
                 style={{
                   marginLeft: '20px',
-                  marginRight: '20px',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -218,43 +243,25 @@ function ResourcePage() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  marginLeft: '-10px',
-                  marginRight: '-10px'
                 }}
               >
-                <Avatar src={require('../book.png')} alt="Output Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
+                <Avatar src={require('../book.png')} alt="Pathway Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
-                  Path
+                  Your Career Pathway
                 </Typography>
-
-                {/* Scrollable Inner Box */}
-                <Paper
-                  elevation={3}
-                  style={{
-                    width: '90%',
-                    height: '70%',
-                    padding: '20px',
-                    backgroundColor: '#222b3d',
-                    color: '#ffffff',
-                    borderRadius: '10px',
-                    marginTop: '20px',
-                    overflowY: 'auto',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Typography variant="body1" style={{ textAlign: 'center' }}>
-                    Your mentor match will appear here.
-                  </Typography>
-                </Paper>
+                <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+                  {/* Career pathway generation logic would be implemented here */}
+                  {currentDepartment && currentSkills.length > 0 ? 
+                    `Based on your current department (${currentDepartment}) and skills: ${currentSkills.join(', ')}, here are your potential pathways!` : 
+                    'Please select a department and add skills to generate pathways.'}
+                </Typography>
               </Paper>
             </Box>
           </Grid>
 
-          {/* Arrow between Middle and Right Column */}
+          {/* Arrow between Middle Column and Right Column */}
           <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-10px', marginRight: '-40px' }} />
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-40px', marginRight: '-15px', transform: 'rotate(180deg)' }} />
           </Grid>
 
           {/* Right Column - Aspiring */}
@@ -284,8 +291,8 @@ function ResourcePage() {
                 <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
                   <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
                   <Select
-                    value={department}
-                    onChange={handleDepartmentChange}
+                    value={aspiringDepartment}
+                    onChange={handleAspiringDepartmentChange}
                     label="Department"
                     sx={{
                       color: '#ffffff',
@@ -306,13 +313,14 @@ function ResourcePage() {
                     <MenuItem value="Operations">Operations</MenuItem>
                   </Select>
                 </FormControl>
+
                 {/* Skill Input */}
                 <TextField
                   label="Add a Skill"
                   variant="outlined"
-                  value={skillInput}
-                  onChange={(e) => setSkillInput(e.target.value)}
-                  onKeyDown={handleAddSkill}
+                  value={aspiringSkillInput}
+                  onChange={(e) => setAspiringSkillInput(e.target.value)}
+                  onKeyDown={handleAddAspiringSkill}
                   placeholder="Press Enter to add a skill"
                   fullWidth
                   style={{ marginTop: '20px' }}
@@ -335,11 +343,11 @@ function ResourcePage() {
                   }}
                 />
                 <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                  {skills.map((skill, index) => (
+                  {aspiringSkills.map((skill, index) => (
                     <Chip
                       key={index}
                       label={skill}
-                      onDelete={() => handleDeleteSkill(skill)}
+                      onDelete={() => handleDeleteAspiringSkill(skill)}
                       color="primary"
                     />
                   ))}
