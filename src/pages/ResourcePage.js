@@ -142,7 +142,7 @@ function ResourcePage() {
           <Typography variant="h5" style={{ fontFamily: 'Myriad', textAlign: 'center', fontWeight: 'bold' }}>
             Learning Resources Centre
           </Typography>
-          <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+          <Typography variant="body1" style={{ fontFamily:'Myriad',textAlign: 'center', marginTop: '10px' }}>
             Tell us your current position and career aspiration to get the best learning resources!
           </Typography>
         </Paper>
@@ -156,6 +156,7 @@ function ResourcePage() {
               <Paper
                 elevation={3}
                 style={{
+                  fontFamily:'Myriad',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -174,7 +175,7 @@ function ResourcePage() {
 
                 {/* Department Dropdown */}
                 <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
-                  <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
+                  <InputLabel style={{ fontFamily:'Myriad', color: '#ffffff' }}>Department</InputLabel>
                   <Select
                     value={currentDepartment}
                     onChange={handleCurrentDepartmentChange}
@@ -201,7 +202,7 @@ function ResourcePage() {
 
                 {/* Experience Level Dropdown */}
                 <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
-                  <InputLabel style={{ color: '#ffffff' }}>Experience Level</InputLabel>
+                  <InputLabel style={{fontFamily:'Myriad', color: '#ffffff' }}>Experience Level</InputLabel>
                   <Select
                     value={currentExperienceLevel}
                     onChange={(event) => setCurrentExperienceLevel(event.target.value)}
@@ -237,10 +238,10 @@ function ResourcePage() {
                   fullWidth
                   style={{ marginTop: '20px' }}
                   InputLabelProps={{
-                    style: { color: '#ffffff' },
+                    style: { fontFamily:'Myriad', color: '#ffffff' },
                   }}
                   InputProps={{
-                    style: { color: '#ffffff' },
+                    style: {fontFamily:'Myriad', color: '#ffffff' },
                     sx: {
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
@@ -295,7 +296,7 @@ function ResourcePage() {
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Your Career Pathway
                 </Typography>
-                <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
+                <Typography variant="body1" style={{ fontFamily:'Myriad', textAlign: 'center', marginTop: '10px' }}>
                   {gptResponse || 'Please select a department and add skills to generate pathways.'}
                 </Typography>
               </Paper>
@@ -341,10 +342,10 @@ function ResourcePage() {
                   fullWidth
                   style={{ marginTop: '35px' }}
                   InputLabelProps={{
-                    style: { color: '#ffffff' },
+                    style: { fontFamily:'Myriad', color: '#ffffff' },
                   }}
                   InputProps={{
-                    style: { color: '#ffffff' },
+                    style: { fontFamily:'Myriad', color: '#ffffff' },
                     sx: {
                       height: '242px',
                       display: 'flex', // Use flex display to align content
