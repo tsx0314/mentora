@@ -74,8 +74,8 @@ function ResourcePage() {
       </Container>
 
       <Container maxWidth="lg">
-        <Grid container spacing={4}>
-          {/* Left Column */}
+        <Grid container spacing={0} justifyContent="space-between" alignItems="center">
+          {/* Left Column - Current */}
           <Grid item xs={3}>
             <Box display="flex" flexDirection="column" justifyContent="center" height="100%">
               <Paper
@@ -86,14 +86,14 @@ function ResourcePage() {
                   color: '#ffffff',
                   borderRadius: '10px',
                   border: '2px solid #61dafb',
-                  height: 'calc(100vh - 300px)', // Matches height of Matching Page boxes
+                  height: 'calc(100vh - 300px)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                 }}
               >
                 {/* Logo for Left Column */}
-                <Avatar src={require('../logo1.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
+                <Avatar src={require('../junior.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Current
                 </Typography>
@@ -101,8 +101,13 @@ function ResourcePage() {
             </Box>
           </Grid>
 
-          {/* Right Column */}
-          <Grid item xs={6}> {/* Adjusted width to align with intro box */}
+          {/* Arrow between Left and Middle Column */}
+          <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '40px', marginLeft: '-10px' }} />
+          </Grid>
+
+          {/* Middle Column - Output */}
+          <Grid item xs={6}>
             <Box display="flex" flexDirection="column" justifyContent="center" height="100%">
               <Paper
                 elevation={3}
@@ -112,14 +117,14 @@ function ResourcePage() {
                   color: '#ffffff',
                   borderRadius: '10px',
                   border: '2px solid #61dafb',
-                  height: 'calc(100vh - 300px)', // Matches height of Matching Page boxes
+                  height: 'calc(100vh - 300px)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                 }}
               >
-                {/* Logo for Right Column */}
-                <Avatar src={require('../logo2.png')} alt="Output Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
+                {/* Logo for Middle Column */}
+                <Avatar src={require('../book.png')} alt="Output Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Output
                 </Typography>
@@ -128,14 +133,14 @@ function ResourcePage() {
                 <Paper
                   elevation={3}
                   style={{
-                    width: '90%', // Matches proportion as in Matching Page
-                    height: '70%', // Adjusted to match inner box proportion in Matching Page
+                    width: '90%',
+                    height: '70%',
                     padding: '20px',
                     backgroundColor: '#222b3d',
                     color: '#ffffff',
                     borderRadius: '10px',
                     marginTop: '20px',
-                    overflowY: 'auto', // Makes the inner box scrollable
+                    overflowY: 'auto',
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
@@ -149,7 +154,12 @@ function ResourcePage() {
             </Box>
           </Grid>
 
-          {/* Middle Column */}
+          {/* Arrow between Middle and Right Column */}
+          <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '40px', marginLeft: '-10px' }} />
+          </Grid>
+
+          {/* Right Column - Aspiring */}
           <Grid item xs={3}>
             <Box display="flex" flexDirection="column" justifyContent="center" height="100%">
               <Paper
@@ -160,14 +170,14 @@ function ResourcePage() {
                   color: '#ffffff',
                   borderRadius: '10px',
                   border: '2px solid #61dafb',
-                  height: 'calc(100vh - 300px)', // Matches height of Matching Page boxes
+                  height: 'calc(100vh - 300px)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
                 }}
               >
-                {/* Logo for Middle Column */}
-                <Avatar src={require('../logo1.png')} alt="Aspiring Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
+                {/* Logo for Right Column */}
+                <Avatar src={require('../expert.png')} alt="Aspiring Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Aspiring
                 </Typography>
