@@ -1,5 +1,8 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab } from '@mui/material';
+import React, { useState } from 'react';
+import {
+  AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab,
+  Select, MenuItem, FormControl, InputLabel, TextField, Chip
+} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
 
@@ -7,6 +10,32 @@ function ResourcePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentTab = location.pathname;
+
+  // State for department and skillset
+  const [department, setDepartment] = useState('');
+  const [skills, setSkills] = useState([]);
+  const [skillInput, setSkillInput] = useState('');
+
+  // Handle changes to department
+  const handleDepartmentChange = (event) => {
+    setDepartment(event.target.value);
+  };
+
+  // Handle adding a skill
+  const handleAddSkill = (event) => {
+    if (event.key === 'Enter' && skillInput.trim()) {
+      // Add the skill if it's not already in the list
+      if (!skills.includes(skillInput.trim())) {
+        setSkills([...skills, skillInput.trim()]);
+      }
+      setSkillInput(''); // Clear input field
+    }
+  };
+
+  // Handle deleting a skill
+  const handleDeleteSkill = (skillToDelete) => {
+    setSkills(skills.filter((skill) => skill !== skillToDelete));
+  };
 
   return (
     <div style={{ backgroundColor: '#0A0F1F', minHeight: '100vh', fontFamily: 'Myriad' }}>
@@ -93,11 +122,76 @@ function ResourcePage() {
                   alignItems: 'center',
                 }}
               >
-                {/* Logo for Left Column */}
                 <Avatar src={require('../junior.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Current
                 </Typography>
+
+                
+                {/* Department Dropdown */}
+                <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
+                  <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
+                  <Select
+                    value={department}
+                    onChange={handleDepartmentChange}
+                    label="Department"
+                    sx={{
+                      color: '#ffffff',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    }}
+                  >
+                    <MenuItem value="Technology">Technology</MenuItem>
+                    <MenuItem value="Human Resources">Human Resources</MenuItem>
+                    <MenuItem value="Finance">Finance</MenuItem>
+                    <MenuItem value="Operations">Operations</MenuItem>
+                  </Select>
+                </FormControl>
+                {/* Skill Input */}
+                <TextField
+                  label="Add a Skill"
+                  variant="outlined"
+                  value={skillInput}
+                  onChange={(e) => setSkillInput(e.target.value)}
+                  onKeyDown={handleAddSkill}
+                  placeholder="Press Enter to add a skill"
+                  fullWidth
+                  style={{ marginTop: '20px' }}
+                  InputLabelProps={{
+                    style: { color: '#ffffff' },
+                  }}
+                  InputProps={{
+                    style: { color: '#ffffff' },
+                    sx: {
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    },
+                  }}
+                />
+                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  {skills.map((skill, index) => (
+                    <Chip
+                      key={index}
+                      label={skill}
+                      onDelete={() => handleDeleteSkill(skill)}
+                      color="primary"
+                    />
+                  ))}
+                </Box>
               </Paper>
             </Box>
           </Grid>
@@ -128,7 +222,6 @@ function ResourcePage() {
                   marginRight: '-10px'
                 }}
               >
-                {/* Logo for Middle Column */}
                 <Avatar src={require('../book.png')} alt="Output Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Path
@@ -182,11 +275,75 @@ function ResourcePage() {
                   alignItems: 'center',
                 }}
               >
-                {/* Logo for Right Column */}
                 <Avatar src={require('../expert.png')} alt="Aspiring Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Aspiring
                 </Typography>
+
+                {/* Department Dropdown */}
+                <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
+                  <InputLabel style={{ color: '#ffffff' }}>Department</InputLabel>
+                  <Select
+                    value={department}
+                    onChange={handleDepartmentChange}
+                    label="Department"
+                    sx={{
+                      color: '#ffffff',
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    }}
+                  >
+                    <MenuItem value="Technology">Technology</MenuItem>
+                    <MenuItem value="Human Resources">Human Resources</MenuItem>
+                    <MenuItem value="Finance">Finance</MenuItem>
+                    <MenuItem value="Operations">Operations</MenuItem>
+                  </Select>
+                </FormControl>
+                {/* Skill Input */}
+                <TextField
+                  label="Add a Skill"
+                  variant="outlined"
+                  value={skillInput}
+                  onChange={(e) => setSkillInput(e.target.value)}
+                  onKeyDown={handleAddSkill}
+                  placeholder="Press Enter to add a skill"
+                  fullWidth
+                  style={{ marginTop: '20px' }}
+                  InputLabelProps={{
+                    style: { color: '#ffffff' },
+                  }}
+                  InputProps={{
+                    style: { color: '#ffffff' },
+                    sx: {
+                      '& .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&:hover .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        borderColor: '#61dafb',
+                      },
+                    },
+                  }}
+                />
+                <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  {skills.map((skill, index) => (
+                    <Chip
+                      key={index}
+                      label={skill}
+                      onDelete={() => handleDeleteSkill(skill)}
+                      color="primary"
+                    />
+                  ))}
+                </Box>
               </Paper>
             </Box>
           </Grid>
