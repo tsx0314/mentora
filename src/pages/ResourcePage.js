@@ -21,6 +21,9 @@ function ResourcePage() {
   // State for right column (Aspiring)
   const [aspiringInput, setAspiringInput] = useState(''); // State for aspiration text input
 
+  // State for GPT response
+  const [gptResponse, setGptResponse] = useState('');
+
   // Handle changes to current department
   const handleCurrentDepartmentChange = (event) => {
     setCurrentDepartment(event.target.value);
@@ -49,7 +52,7 @@ function ResourcePage() {
       I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
       My current skills include: ${currentSkills.join(', ')}.
       
-      I aspire to work in the ${aspiringDepartment} department. My aspirations are: ${aspiringInput}.
+      My aspirations are: ${aspiringInput}.
       Please provide me with a career pathway, including the skills I need to develop and the courses I should take to reach my goal.
     `;
 

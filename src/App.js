@@ -25,7 +25,7 @@ function App() {
           Sign up 
         </Button>
         <Button variant="contained" color="primary" component={Link} to="/login" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
-          Login 
+          Log In 
         </Button>
         {/* <Button variant="contained" color="primary" component={Link} to="/matching" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
           Matching Page
