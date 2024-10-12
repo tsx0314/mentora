@@ -20,16 +20,6 @@ function MatchingPage() {
 
   const handleSubmit = async () => {
     if (selectedFile) {
-      // Placeholder: Integrate GPT API here to process the file
-      const formData = new FormData();
-      formData.append('file', selectedFile);
-
-      // Call GPT API to extract skills from the file (implementation not included)
-      // Example:
-      // const response = await extractSkillsFromFile(formData);
-      // setOutput(response.data.skills);
-
-      // For now, simulate output
       setOutput(`Extracted skills from ${selectedFile.name}`);
     } else {
       setOutput('No file selected');
@@ -37,7 +27,7 @@ function MatchingPage() {
   };
 
   return (
-    <div style={{ backgroundColor: '#2c2c2c', minHeight: '100vh', padding: '20px' }}>
+    <div style={{ backgroundColor: 'black', minHeight: '100vh', padding: '20px', fontFamily: 'Roboto' }}>
       {/* Header Section with Tabs */}
       <AppBar position="static" style={{ backgroundColor: '#1b1b1b' }}>
         <Toolbar style={{ justifyContent: 'space-between' }}>
@@ -48,7 +38,7 @@ function MatchingPage() {
               value={currentTab}
               onChange={(event, newValue) => navigate(newValue)}
               textColor="inherit"
-              TabIndicatorProps={{ style: { backgroundColor: '#ffffff' } }}
+              TabIndicatorProps={{ style: { backgroundColor: '#61dafb' } }}
             >
               <Tab
                 label="Match"
@@ -58,6 +48,8 @@ function MatchingPage() {
                 style={{
                   color: currentTab === '/matching' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/matching' ? '#333333' : 'inherit',
+                  fontFamily: 'Roboto',
+                  fontWeight: 'bold',
                 }}
               />
               <Tab
@@ -68,6 +60,8 @@ function MatchingPage() {
                 style={{
                   color: currentTab === '/resources' ? '#ffffff' : '#bbbbbb',
                   backgroundColor: currentTab === '/resources' ? '#333333' : 'inherit',
+                  fontFamily: 'Roboto',
+                  fontWeight: 'bold',
                 }}
               />
             </Tabs>
@@ -78,7 +72,7 @@ function MatchingPage() {
       </AppBar>
 
       {/* Main Content */}
-      <Container maxWidth="md" style={{ marginTop: '30px' }}>
+      <Container maxWidth="md" style={{ marginTop: '30px', fontFamily: 'Roboto' }}>
         {/* Intro Section */}
       <Paper
         style={{
@@ -145,7 +139,7 @@ function MatchingPage() {
                 type="file"
                 inputProps={{ accept: '.pdf, .docx' }}
                 onChange={handleFileUpload}
-                style={{ color: '#ffffff' }}
+                style={{ color: '#ffffff', fontFamily: 'Roboto' }}
               />
             </Paper>
           </Grid>
@@ -153,17 +147,17 @@ function MatchingPage() {
 
         {/* Submit Button Section */}
         <Box textAlign="center" marginTop="30px" marginBottom="30px">
-          <Button variant="contained" style={{ backgroundColor: '#555555', color: '#ffffff' }} onClick={handleSubmit}>
+          <Button variant="contained" style={{ backgroundColor: '#555555', color: '#ffffff', fontFamily: 'Roboto', fontWeight: 'bold' }} onClick={handleSubmit}>
             Submit
           </Button>
         </Box>
 
         {/* Output Section */}
         <Paper style={{ padding: '20px', backgroundColor: '#333333', color: '#ffffff' }}>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 'bold' }}>
             Output:
           </Typography>
-          <Typography variant="body1">{output}</Typography>
+          <Typography variant="body1" style={{ fontFamily: 'Roboto' }}>{output}</Typography>
         </Paper>
       </Container>
     </div>
