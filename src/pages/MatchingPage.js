@@ -133,7 +133,7 @@ function MatchingPage() {
         {
           model: 'gpt-4', // or 'gpt-4-turbo'
           messages: [
-            { role: 'system', content: 'You are a matchmaker. Based on the following extracted skillsets from the resume and the mentor list, find two most possible mentors. They need to have similar skillsets with mentee. Only provide the two recommendation mentors as a JSON array, including all the data of the mentor in the database.'},
+            { role: 'system', content: 'You are a matchmaker. Based on the following extracted skillsets from the resume and the mentor list, find two most possible mentors. They need to have similar skillsets with mentee. Only provide the two recommendation mentors as a JSON array, including all the data of the two mentors in the database.'},
             { role: 'user', content: `Skills: ${extractedSkills.join(", ")} Mentors: ${JSON.stringify(mentors.map(mentor => ({ name: mentor.name, email: mentor.email, skills: mentor.skills })))}.` }
           ],
           temperature: 0.2,
