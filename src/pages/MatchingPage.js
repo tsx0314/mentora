@@ -212,7 +212,7 @@ function MatchingPage() {
           }}
         >
           <Typography variant="h5" style={{ fontFamily: 'Myriad', textAlign: 'center', fontWeight: 'bold' }}>
-            Welcome to Your Mentorship Matchmaking Hub
+            Mentorship Matching
           </Typography>
           <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
             Ready to grow? Upload your resume and find the perfect mentor tailored to your career aspirations.
