@@ -26,12 +26,12 @@ function App() {
         <Button variant="contained" color="primary" component={Link} to="/login" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
           Login Page
         </Button>
-        <Button variant="contained" color="primary" component={Link} to="/matching" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
+        {/* <Button variant="contained" color="primary" component={Link} to="/matching" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
           Matching Page
         </Button>
         <Button variant="contained" color="primary" component={Link} to="/resources" sx={{ fontFamily: 'Roboto', fontSize: '1.2rem', borderRadius: '50px', padding: '10px 30px' }}>
           Resource Page
-        </Button>
+        </Button> */}
       </Box>
     </Box>
   );
