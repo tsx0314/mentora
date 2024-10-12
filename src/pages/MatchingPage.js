@@ -33,7 +33,7 @@ function MatchingPage() {
         <Toolbar style={{ justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center">
             {/* Logo Image */}
-            <Avatar src="/path/to/logo.png" alt="Logo" style={{ marginRight: '20px' }} />
+            <Avatar src={require('../psa_logo.png')} alt="Logo" style={{ marginRight: '20px' }} />
             <Tabs
               value={currentTab}
               onChange={(event, newValue) => navigate(newValue)}
@@ -67,7 +67,7 @@ function MatchingPage() {
             </Tabs>
           </Box>
           {/* Profile Image */}
-          <Avatar src="/path/to/profile.jpg" alt="Profile Picture" />
+          <Avatar src={require('../user.png')} alt="Profile Picture" />
         </Toolbar>
       </AppBar>
 
