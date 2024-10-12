@@ -81,6 +81,7 @@ function ResourcePage() {
               <Paper
                 elevation={3}
                 style={{
+                  marginRight: '20px',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -103,7 +104,7 @@ function ResourcePage() {
 
           {/* Arrow between Left and Middle Column */}
           <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '40px', marginLeft: '-10px' }} />
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-40px', marginRight: '-15px' }} />
           </Grid>
 
           {/* Middle Column - Output */}
@@ -112,6 +113,8 @@ function ResourcePage() {
               <Paper
                 elevation={3}
                 style={{
+                  marginLeft: '20px',
+                  marginRight: '20px',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -121,6 +124,8 @@ function ResourcePage() {
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
+                  marginLeft: '-10px',
+                  marginRight: '-10px'
                 }}
               >
                 {/* Logo for Middle Column */}
@@ -156,7 +161,7 @@ function ResourcePage() {
 
           {/* Arrow between Middle and Right Column */}
           <Grid item xs="auto" style={{ display: 'flex', justifyContent: 'center' }}>
-            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '40px', marginLeft: '-10px' }} />
+            <Avatar src={require('../arrow.png')} alt="Arrow" style={{ width: '40px', height: '20px', marginLeft: '-10px', marginRight: '-40px' }} />
           </Grid>
 
           {/* Right Column - Aspiring */}
@@ -165,6 +170,7 @@ function ResourcePage() {
               <Paper
                 elevation={3}
                 style={{
+                  marginLeft: '20px',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
