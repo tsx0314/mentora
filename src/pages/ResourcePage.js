@@ -121,7 +121,7 @@ function ResourcePage() {
                 {/* Logo for Right Column */}
                 <Avatar src={require('../logo2.png')} alt="Output Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
-                  Output
+                  Path
                 </Typography>
 
                 {/* Scrollable Inner Box */}
