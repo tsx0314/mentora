@@ -80,21 +80,66 @@ function MatchingPage() {
       {/* Main Content */}
       <Container maxWidth="md" style={{ marginTop: '30px' }}>
         {/* Intro Section */}
-        <Paper style={{ padding: '20px', marginBottom: '30px', backgroundColor: '#333333', color: '#ffffff' }}>
-          <Typography variant="h5" gutterBottom>
-            Intro:
-          </Typography>
-          <Typography variant="body1">
-            Please upload your resume to match your mentor.
-          </Typography>
-        </Paper>
+      <Paper
+        style={{
+          padding: '20px',
+          marginBottom: '30px',
+          backgroundColor: '#333333',
+          color: '#ffffff',
+        }}
+      >
+        <Typography variant="h5" gutterBottom>
+          Welcome to Your Mentorship Matchmaking Hub!
+        </Typography>
+
+        <Typography variant="body1" paragraph>
+          Embark on a journey of growth and discovery with our personalized mentorship
+          matching platform. We're excited to help you connect with mentors who can
+          guide you toward achieving your professional goals.
+        </Typography>
+
+        <Typography variant="h6" gutterBottom>
+          How It Works:
+        </Typography>
+
+        <Typography variant="body1" component="div">
+          <ol>
+            <li>
+              <strong>Tell Us About Yourself:</strong>
+              <ul>
+                <li>
+                  <strong>Upload Your Resume:</strong> Let us know about your skills, career
+                  aspirations, interests, and the areas you'd like to develop.
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>Intelligent Matching:</strong>
+              <ul>
+                <li>
+                  <strong>AI-Powered Recommendations:</strong> Our advanced AI
+                  analyzes your input to understand your unique needs.
+                </li>
+                <li>
+                  <strong>Personalized Mentor List:</strong> Receive tailored mentor
+                  suggestions who align with your goals and interests.
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </Typography>
+
+        <Typography variant="h6" gutterBottom style={{ marginTop: '20px' }}>
+          Empower your future by finding the right mentor today!
+        </Typography>
+      </Paper>
 
         {/* File Upload Section */}
         <Grid container spacing={4} style={{ marginBottom: '30px' }}>
           <Grid item xs={12}>
             <Paper style={{ padding: '20px', backgroundColor: '#444444', color: '#ffffff', borderRadius: '8px' }}>
               <Typography variant="h6" gutterBottom>
-                Upload your file (PDF/DOCX):
+                Upload your resume (PDF/DOCX):
               </Typography>
               <Input
                 type="file"
