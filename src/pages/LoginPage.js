@@ -14,15 +14,10 @@ const LoginPage = () => {
         event.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Successful login
                 const user = userCredential.user;
-                console.log(user);
-                
-                // Redirect to matching page
                 navigate('/matching');
             })
             .catch((error) => {
-                // Handle errors and display meaningful messages
                 const errorCode = error.code;
                 let message = '';
 
@@ -47,14 +42,13 @@ const LoginPage = () => {
                         break;
                 }
 
-                console.error(errorCode, error.message);
-                setErrorMessage(message);  // Set the error message in state
+                setErrorMessage(message);
             });
     };
 
     useEffect(() => {
-        // Set the background color of the body to black
-        document.body.style.backgroundColor = 'black';
+        // Set the background color of the body to dark blue (close to black)
+        document.body.style.backgroundColor = '#0A0F1F';
     }, []);
 
     return (
@@ -64,26 +58,26 @@ const LoginPage = () => {
                 marginTop: '100px', 
                 padding: '20px',
                 borderRadius: '8px',
-                fontFamily: 'Roboto',
+                fontFamily: 'Myriad',
                 fontWeight: 'bold',
             }}
         >
             <Box 
                 sx={{ 
-                    bgcolor: 'black',
+                    bgcolor: '#111c30',
                     padding: 3, 
                     borderRadius: 2, 
                     boxShadow: 3,
                     border: '2px solid #61dafb',
-                    fontFamily: 'Roboto', // Set the font family to fantasy
-                    fontWeight: 'bold', // Make the font bold
+                    fontFamily: 'Myriad',
+                    fontWeight: 'bold',
                 }}
             >
                 <Typography 
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set text color to white and font to fantasy
+                    sx={{ color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }} // Set text color to white and font to Myriad
                 >
                     Log In
                 </Typography>
@@ -106,10 +100,10 @@ const LoginPage = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } // Change label color and font to bold
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -132,10 +126,10 @@ const LoginPage = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } // Change label color and font to bold
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }, // Change input text color to white and make it bold
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -157,8 +151,10 @@ const LoginPage = () => {
                             '&:hover': {
                                 backgroundColor: '#55c3e5'
                             },
-                            fontFamily: 'Roboto', // Set font family to fantasy
-                            fontWeight: 'bold' // Make the button text bold
+                            fontFamily: 'Myriad', // Set font family to Myriad
+                            fontWeight: 'bold', // Make the button text bold
+                            padding: '10px 30px',
+                            borderRadius: '30px'
                         }} 
                         fullWidth 
                     >
@@ -170,7 +166,7 @@ const LoginPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Roboto', fontWeight: 'bold' }} // Set link color to blue and font to fantasy
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Myriad', fontWeight: 'bold' }} // Set link color and font to match
                 >
                     Don't have an account? Sign up here.
                 </Link>

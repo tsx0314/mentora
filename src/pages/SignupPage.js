@@ -4,13 +4,13 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } f
 import { useNavigate } from 'react-router-dom'; 
 
 const SignupPage = () => {
-    const [email, setEmail] = useState('');  // State to store email input
-    const [password, setPassword] = useState('');  // State to store password input
-    const [confirmPassword, setConfirmPassword] = useState(''); // State to store confirm password input
-    const [errorMessage, setErrorMessage] = useState(''); // State to store error messages
+    const [email, setEmail] = useState('');  
+    const [password, setPassword] = useState('');  
+    const [confirmPassword, setConfirmPassword] = useState(''); 
+    const [errorMessage, setErrorMessage] = useState(''); 
     const [successMessage, setSuccessMessage] = useState(''); 
-    const auth = getAuth();  // Get Firebase Auth instance
-    const navigate = useNavigate();  // Initialize useNavigate hook for redirection
+    const auth = getAuth();  
+    const navigate = useNavigate();  
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -24,14 +24,12 @@ const SignupPage = () => {
                 setSuccessMessage('Account created successfully! Logging in...');
                 signInWithEmailAndPassword(auth, email, password)
                 .then(() => {
-                    // After login, redirect to the resource page after a 2-second delay
                     setTimeout(() => {
-                        navigate('/matching'); // Redirect to matching page
-                    }, 2000); // Delay for 2 seconds
+                        navigate('/matching');
+                    }, 2000);
                 })
             })
             .catch((error) => {
-                // Handle errors and display meaningful messages
                 const errorCode = error.code;
                 let message = '';
 
@@ -49,15 +47,12 @@ const SignupPage = () => {
                         message = 'Failed to sign up. Please try again.';
                         break;
                 }
-
-                console.error(errorCode, error.message);
-                setErrorMessage(message);  // Set the error message in state
+                setErrorMessage(message);  
             });
     };
 
     useEffect(() => {
-        // Set the background color of the body to black
-        document.body.style.backgroundColor = 'black';
+        document.body.style.backgroundColor = '#0A0F1F';
     }, []);
 
     return (
@@ -67,18 +62,18 @@ const SignupPage = () => {
                 marginTop: '100px', 
                 padding: '20px',
                 borderRadius: '8px',
-                fontFamily: 'Roboto',
+                fontFamily: 'Myriad',  // Changed to Myriad
                 fontWeight: 'bold',
             }}
         >
             <Box 
                 sx={{ 
-                    bgcolor: 'black',
+                    bgcolor: '#111c30',
                     padding: 3, 
                     borderRadius: 2, 
                     boxShadow: 3,
                     border: '2px solid #61dafb',
-                    fontFamily: 'Roboto',
+                    fontFamily: 'Myriad',  // Changed to Myriad
                     fontWeight: 'bold',
                 }}
             >
@@ -86,7 +81,7 @@ const SignupPage = () => {
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }} 
+                    sx={{ color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }} // Changed to Myriad
                 >
                     Sign Up
                 </Typography>
@@ -97,7 +92,7 @@ const SignupPage = () => {
                         color="error" 
                         sx={{ 
                             mb: 2, 
-                            fontFamily: 'Roboto', 
+                            fontFamily: 'Myriad',  // Changed to Myriad
                             fontWeight: 'bold' 
                         }}
                     >
@@ -108,12 +103,11 @@ const SignupPage = () => {
                     <Typography 
                         variant="body2" 
                         align="center" 
-                        color="success" 
                         sx={{ 
                             mb: 2, 
-                            fontFamily: 'Roboto', 
+                            fontFamily: 'Myriad',  // Changed to Myriad
                             fontWeight: 'bold',
-                            color: 'lightgreen'  // Change to a success color
+                            color: 'lightgreen'  
                         }}
                     >
                         {successMessage}
@@ -125,13 +119,13 @@ const SignupPage = () => {
                         label="Email" 
                         margin="normal" 
                         required 
-                        value={email}  // Bind value to email state
-                        onChange={(e) => setEmail(e.target.value)}  // Update email state
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}  
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } 
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' },
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' },
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -151,13 +145,13 @@ const SignupPage = () => {
                         type="password" 
                         margin="normal" 
                         required 
-                        value={password}  // Bind value to password state
-                        onChange={(e) => setPassword(e.target.value)}  // Update password state
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}  
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } 
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' },
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' },
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -177,13 +171,13 @@ const SignupPage = () => {
                         type="password" 
                         margin="normal" 
                         required 
-                        value={confirmPassword}  // Bind value to confirmPassword state
-                        onChange={(e) => setConfirmPassword(e.target.value)}  // Update confirmPassword state
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}  
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' }
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } 
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Roboto', fontWeight: 'bold' },
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' },
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -205,8 +199,10 @@ const SignupPage = () => {
                             '&:hover': {
                                 backgroundColor: '#55c3e5'
                             },
-                            fontFamily: 'Roboto',
-                            fontWeight: 'bold'
+                            fontFamily: 'Myriad',  // Changed to Myriad
+                            fontWeight: 'bold',
+                            padding: '10px 30px',
+                            borderRadius: '30px'
                         }} 
                         fullWidth 
                     >
@@ -218,7 +214,7 @@ const SignupPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Roboto', fontWeight: 'bold' }} 
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Myriad', fontWeight: 'bold' }} // Changed to Myriad
                 >
                     Already have an account? Log in here.
                 </Link>
