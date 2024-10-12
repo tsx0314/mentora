@@ -41,7 +41,7 @@ function MatchingPage() {
         <Toolbar style={{ justifyContent: 'space-between' }}>
           <Box display="flex" alignItems="center">
             {/* Logo Image */}
-            <Avatar src={require('../logo1.png')} alt="Logo" style={{ marginRight: '20px' }} /> {/* Updated logo1.png */}
+            <Avatar src={require('../logo1.png')} alt="Logo" style={{ marginRight: '20px' }} />
             <Tabs
               value={currentTab}
               onChange={(event, newValue) => navigate(newValue)}
@@ -125,32 +125,73 @@ function MatchingPage() {
                   Upload Resume
                 </Typography>
 
-                {/* The start of this description is aligned with the inner text box in the right box */}
                 <Box display="flex" flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
                   <Typography variant="body1" style={{ textAlign: 'center' }}>
                     Upload your resume for us to analyze your skills and provide personalized mentor matches.
                   </Typography>
-                  <Input
-                    type="file"
-                    inputProps={{ accept: '.pdf, .docx' }}
-                    onChange={handleFileUpload}
-                    style={{ color: '#ffffff', marginBottom: '20px', fontFamily: 'Myriad' }}
-                  />
-                  <Button
-                    variant="contained"
-                    style={{
-                      backgroundColor: '#61dafb',
-                      color: '#0A0F1F',
-                      fontFamily: 'Myriad',
-                      fontWeight: 'bold',
-                      padding: '10px 30px',
-                      borderRadius: '30px',
-                      fontSize: '1rem',
-                    }}
-                    onClick={handleSubmit}
-                  >
-                    Submit
-                  </Button>
+
+                  {/* Choose File Button */}
+                  <Box display="flex" flexDirection="column" alignItems="center">
+                    <Button
+                      variant="outlined" // Changed to outlined for visibility
+                      component="label"
+                      style={{
+                        backgroundColor: '#111c30', // Same as container bg color
+                        border: '2px solid #61dafb', // Border color matching the background
+                        color: '#61dafb', // Text color
+                        fontFamily: 'Myriad',
+                        fontWeight: 'bold',
+                        padding: '5px 10px', // Shorter padding
+                        borderRadius: '30px',
+                        fontSize: '1rem',
+                        marginBottom: '5px',
+                        width: '150px', // Set specific width
+                      }}
+                    >
+                      Choose File
+                      <Input
+                        type="file"
+                        inputProps={{ accept: '.pdf, .docx' }}
+                        onChange={handleFileUpload}
+                        style={{ display: 'none' }} // Hide the actual input
+                      />
+                    </Button>
+                    {/* File name display and cross icon */}
+                    <Box display="flex" alignItems="center">
+                      <Typography variant="body2" style={{ color: '#ffffff', marginRight: '5px' }}>
+                        {selectedFile ? selectedFile.name : 'No file chosen.'}
+                      </Typography>
+                      {selectedFile && (
+                        <CloseIcon
+                          onClick={handleRemoveFile}
+                          style={{
+                            cursor: 'pointer',
+                            color: '#61dafb', // Same color as the submit button background
+                          }}
+                        />
+                      )}
+                    </Box>
+                  </Box>
+
+                  {/* Centered Submit Button */}
+                  <Box display="flex" justifyContent="center" marginTop="10px">
+                    <Button
+                      variant="contained"
+                      style={{
+                        backgroundColor: '#61dafb',
+                        color: '#0A0F1F',
+                        fontFamily: 'Myriad',
+                        fontWeight: 'bold',
+                        padding: '5px 10px', // Shorter padding
+                        borderRadius: '30px',
+                        fontSize: '1rem',
+                        width: '100%', // Set to 100% to match the width of the text above
+                      }}
+                      onClick={handleSubmit}
+                    >
+                      Submit
+                    </Button>
+                  </Box>
                 </Box>
               </Paper>
             </Box>
