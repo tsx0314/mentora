@@ -88,11 +88,13 @@ function ResourcePage() {
     Please provide:
     1. Three skills I should learn to advance in my desired role.
     2. Recommended courses or platforms to learn these skills.
+    3. Recommanded courses discription
   
     Reply in the following JSON format:
     {
       "SkillsToLearn": ["Skill 1", "Skill 2", "Skill 3"],
-      "CoursesToTake": ["Course for Skill 1 LearningPlatformName", "Course for Skill 2 LearningPlatformName", "Course for Skill 3 LearningPlatformName"]
+      "CoursesToTake": ["Course1 for Skill 1 LearningPlatformName", "Course2 for Skill 2 LearningPlatformName", "Course3 for Skill 3 LearningPlatformName"],
+      "CoursesDescription": ["Course Discription for Course1", "Course Discription for Course2", "Course Discription for Course3"]
     }
     Please ensure the arrays correspond by index.
   `;
@@ -372,7 +374,7 @@ function ResourcePage() {
                   ) : (
                     gptResponse?.SkillsToLearn?.length > 0 ? (
                       gptResponse.SkillsToLearn.map((skill, index) => (
-                        <Box key={index} sx={{ marginBottom: '10px' }}>
+                        <Box key={index} sx={{ marginBottom: '20px' }}>
                           <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#61dafb' }}>
                             <TypingEffect
                                 text={`${index + 1}. ${skill}`}
@@ -383,7 +385,7 @@ function ResourcePage() {
                                 )}
                               />
                           </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                          <Typography variant="body2" sx={{ color: '#ffffff', marginBottom: '10px', lineHeight: 1.8 }}>
                             <TypingEffect
                                 text={`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}
                                 speed={100}
@@ -392,6 +394,17 @@ function ResourcePage() {
                                   <span>{text}</span>
                                 )}
                               />
+                          </Typography>
+                          <Typography variant="body2" sx={{ color: '#ffffff', marginBottom: '10px', lineHeight: 1.8 }}>
+                          <TypingEffect
+                                text={`Description: ${gptResponse.CoursesDescription[index] || 'No course description available'}`}
+                                speed={100}
+                                typingDelay={400}
+                                displayTextRenderer={(text) => (
+                                  <span>{text}</span>
+                                )}
+                              />
+                            
                           </Typography>
                           <Divider sx={{ backgroundColor: '#61dafb', marginY: '10px' }} />  {/* Divider added here */}
                         </Box>
