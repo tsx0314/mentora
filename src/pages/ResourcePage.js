@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {
   AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab,
-  Select, MenuItem, FormControl, InputLabel, TextField, Chip, Button
+  Select, MenuItem, FormControl, InputLabel, TextField, Chip, Button, List, ListItem, ListItemText, CircularProgress
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
@@ -21,8 +21,9 @@ function ResourcePage() {
   // State for right column (Aspiring)
   const [aspiringInput, setAspiringInput] = useState(''); // State for aspiration text input
 
-  // State for GPT response
-  const [gptResponse, setGptResponse] = useState('');
+  // State for GPT response and loading state
+  const [gptResponse, setGptResponse] = useState([]);
+  const [loading, setLoading] = useState(false); // Add loading state
 
   // Handle changes to current department
   const handleCurrentDepartmentChange = (event) => {
@@ -46,45 +47,54 @@ function ResourcePage() {
 
   // Function to submit aspirations and generate a career pathway
   const handleAspirationSubmit = async () => {
+    setLoading(true); // Show the loading state
+  
     const systemPrompt = `You are an expert career advisor. You help users identify necessary skills and courses based on their current role and their career aspirations.`;
-
+    
     const userPrompt = `
       I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
       My current skills include: ${currentSkills.join(', ')}.
       My aspirations are: ${aspiringInput}.
-      Provide me with a career pathway.
-      Please only reply the skills that I need to learn and the possible courses in point form.
-      Do not add any greeting messages. Do not respond by saying "Sure, here are ...". Omit that starting completely. 
-      Your output format should solely be "Number: skill and platform, followed by a short description of how this skill can help me get to the career". 
-      Format your answer to start a new line for each skill. Give three skills maximum. 
+      Based on this, please provide:
+      1. Three skills I should learn to advance in my desired role.
+      2. Recommended courses or platforms to learn these skills.
+      Please reply in JSON format with 'SkillsToLearn' and 'CoursesToTake' arrays where the indexes match.
     `;
-
+  
     try {
       const response = await axios.post(
         'https://api.openai.com/v1/chat/completions',
         {
-          model: 'gpt-4',  // Using GPT-4
+          model: 'gpt-4',
           messages: [
-            { role: 'system', content: systemPrompt }, // System message to set context
-            { role: 'user', content: userPrompt }, // User's input and request for advice
+            { role: 'system', content: systemPrompt },
+            { role: 'user', content: userPrompt }
           ],
-          temperature: 0.7, // Control creativity and randomness in responses
+          temperature: 0.3
         },
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
           }
         }
       );
-
-      // Set GPT-4 response to state to display in the middle column
-      setGptResponse(response.data.choices[0].message.content);
-
+  
+      const jsonResponse = JSON.parse(response.data.choices[0].message.content);
+      console.log(jsonResponse);
+      // Check if both arrays exist and are populated
+      if (Array.isArray(jsonResponse.SkillsToLearn) && Array.isArray(jsonResponse.CoursesToTake)) {
+        setGptResponse(jsonResponse);
+      } else {
+        setGptResponse(null); // If not valid response
+      }
     } catch (error) {
-      console.error('Error calling GPT-4 API:', error);
+      console.error('Error fetching GPT-4 response:', error);
+    } finally {
+      setLoading(false); // End loading
     }
   };
+  
 
   return (
     <div style={{ backgroundColor: '#0A0F1F', minHeight: '100vh', fontFamily: 'Myriad' }}>
@@ -145,7 +155,7 @@ function ResourcePage() {
           <Typography variant="h5" style={{ fontFamily: 'Myriad', textAlign: 'center', fontWeight: 'bold' }}>
             Learning Resources Centre
           </Typography>
-          <Typography variant="body1" style={{ fontFamily:'Myriad',textAlign: 'center', marginTop: '10px' }}>
+          <Typography variant="body1" style={{ fontFamily: 'Myriad', textAlign: 'center', marginTop: '10px' }}>
             Tell us your current position and career aspiration to get the best learning resources!
           </Typography>
         </Paper>
@@ -159,7 +169,7 @@ function ResourcePage() {
               <Paper
                 elevation={3}
                 style={{
-                  fontFamily:'Myriad',
+                  fontFamily: 'Myriad',
                   padding: '20px',
                   backgroundColor: '#111c30',
                   color: '#ffffff',
@@ -172,19 +182,19 @@ function ResourcePage() {
                 }}
               >
                 <Avatar src={require('../junior.png')} alt="Current Logo" style={{ width: '80px', height: '80px', marginBottom: '20px' }} />
-                <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px', marginBottom:'15px' }}>
+                <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px', marginBottom: '15px' }}>
                   Current Role
                 </Typography>
 
                 {/* Department Dropdown */}
                 <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
-                  <InputLabel style={{ fontFamily:'Myriad', color: '#ffffff' }}>Department</InputLabel>
+                  <InputLabel style={{ fontFamily: 'Myriad', color: '#ffffff' }}>Department</InputLabel>
                   <Select
                     value={currentDepartment}
                     onChange={handleCurrentDepartmentChange}
                     label="Department"
                     sx={{
-                      fontFamily:'Myriad',
+                      fontFamily: 'Myriad',
                       color: '#ffffff',
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
@@ -206,13 +216,13 @@ function ResourcePage() {
 
                 {/* Experience Level Dropdown */}
                 <FormControl fullWidth variant="outlined" style={{ marginTop: '20px' }}>
-                  <InputLabel style={{fontFamily:'Myriad', color: '#ffffff' }}>Experience Level</InputLabel>
+                  <InputLabel style={{ fontFamily: 'Myriad', color: '#ffffff' }}>Experience Level</InputLabel>
                   <Select
                     value={currentExperienceLevel}
                     onChange={(event) => setCurrentExperienceLevel(event.target.value)}
                     label="Experience Level"
                     sx={{
-                      fontFamily:'Myriad',
+                      fontFamily: 'Myriad',
                       color: '#ffffff',
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
@@ -243,10 +253,10 @@ function ResourcePage() {
                   fullWidth
                   style={{ marginTop: '20px' }}
                   InputLabelProps={{
-                    style: { fontFamily:'Myriad', color: '#ffffff' },
+                    style: { fontFamily: 'Myriad', color: '#ffffff' },
                   }}
                   InputProps={{
-                    style: {fontFamily:'Myriad', color: '#ffffff' },
+                    style: { fontFamily: 'Myriad', color: '#ffffff' },
                     sx: {
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
@@ -301,25 +311,49 @@ function ResourcePage() {
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Your Career Pathway
                 </Typography>
-                <Typography variant="body1" style={{ fontFamily: 'Myriad', textAlign: 'left', marginTop: '10px' }}>
-                    {'Please select a department and add skills to generate pathways.'}
-                </Typography>
+
+                {/* Display GPT Response */}
                 <Box
                   sx={{
-                    height: '200px', // Set the height as needed
-                    width: "90%", 
-                    overflowY: 'auto', // Enable vertical scrolling
+                    height: '200px',
+                    width: "90%",
+                    overflowY: 'auto',
                     padding: '10px',
-                    border: '10px', // Optional: to differentiate the scrolling box
-                    borderRadius: '10px', // Optional: add some border-radius for a better look
-                    backgroundColor: '#222b3d', // Background color to match the design
+                    borderRadius: '10px',
+                    backgroundColor: '#222b3d',
                     alignItems: 'flex-start',
                   }}
                 >
-                <Typography variant="body1" style={{ fontFamily: 'Myriad', textAlign: 'left', marginTop: '10px' }}>
-                    {gptResponse}
-                </Typography>
+                  {loading ? (
+                    <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                      <CircularProgress sx={{ color: '#61dafb' }} />
+                      <Typography variant="body2" style={{ fontFamily: 'Myriad', marginLeft: '10px', color: '#61dafb' }}>
+                        Searching for resources...
+                      </Typography>
+                    </Box>
+                  ) : (
+                    <List>
+                      {gptResponse?.SkillsToLearn?.length > 0 ? (
+                        gptResponse.SkillsToLearn.map((skill, index) => (
+                          <ListItem key={index} sx={{ marginBottom: '10px' }}>
+                            <ListItemText
+                              primary={`${index + 1}. ${skill}`}  // Display the skill
+                              secondary={`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}  // Match the course by index
+                              primaryTypographyProps={{ fontWeight: 'bold', color: '#61dafb' }}
+                              secondaryTypographyProps={{ color: '#ffffff' }}
+                            />
+                          </ListItem>
+                        ))
+                      ) : (
+                        <Typography variant="body2">
+                          Waiting input...
+                        </Typography>
+                      )}
+                    </List>
+                  )}
                 </Box>
+
+
               </Paper>
             </Box>
           </Grid>
@@ -363,14 +397,14 @@ function ResourcePage() {
                   fullWidth
                   style={{ marginTop: '35px' }}
                   InputLabelProps={{
-                    style: { fontFamily:'Myriad', color: '#ffffff' },
+                    style: { fontFamily: 'Myriad', color: '#ffffff' },
                   }}
                   InputProps={{
-                    style: { fontFamily:'Myriad', color: '#ffffff' },
+                    style: { fontFamily: 'Myriad', color: '#ffffff' },
                     sx: {
                       height: '220px',
-                      display: 'flex', // Use flex display to align content
-                      alignItems: 'flex-start', // Align items to the top
+                      display: 'flex',
+                      alignItems: 'flex-start',
                       '& .MuiOutlinedInput-notchedOutline': {
                         borderColor: '#61dafb',
                       },
