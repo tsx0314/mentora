@@ -7,7 +7,6 @@ import CloseIcon from '@mui/icons-material/Close'; // Importing Close Icon
 
 import axios from 'axios';
 import mammoth from 'mammoth'; // For DOCX processing
-import * as pdfjsLib from 'pdfjs-dist'; // For PDF parsing
 
 import { collection, getDocs } from "firebase/firestore"; // Firestore methods
 import { db } from "../firebase"; // Firebase config
@@ -41,27 +40,6 @@ function MatchingPage() {
       return result.value;
     } catch (error) {
       console.error('Error extracting DOCX:', error);
-      return '';
-    }
-  };
-
-  // Extract text from PDF
-  const extractPdfText = async (file) => {
-    try {
-      const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-      let text = '';
-
-      for (let i = 0; i < pdf.numPages; i++) {
-        const page = await pdf.getPage(i + 1);
-        const content = await page.getTextContent();
-        const pageText = content.items.map((item) => item.str).join(' ');
-        text += pageText + ' ';
-      }
-
-      return text;
-    } catch (error) {
-      console.error('Error extracting PDF:', error);
       return '';
     }
   };
@@ -119,15 +97,13 @@ function MatchingPage() {
       console.log("OpenAI API Key:", process.env.REACT_APP_OPENAI_API_KEY);
 
       // Extract text based on file type
-      if (fileType === 'application/pdf') {
-        fileText = await extractPdfText(selectedFile);
-      } else if (
+      if (
         fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || 
         selectedFile.name.endsWith('.docx') // Use file extension as fallback
       ) {
         fileText = await extractDocxText(selectedFile);
       } else {
-        return alert('Unsupported file type. Please upload a PDF or DOCX file.');
+        return alert('Unsupported file type. Please upload a DOCX file.');
       }
 
       // Step 1: Call GPT-4 API to extract skills from the resume
@@ -247,7 +223,7 @@ function MatchingPage() {
             Mentorship Matching
           </Typography>
           <Typography variant="body1" style={{ textAlign: 'center', marginTop: '10px' }}>
-            Ready to grow? Upload your resume and find the perfect mentor tailored to your career aspirations.
+            Ready to grow? Upload your resume format and find the perfect mentor tailored to your career aspirations.
           </Typography>
         </Paper>
       </Container>
@@ -276,7 +252,10 @@ function MatchingPage() {
                 </Typography>
                 <Box display="flex" flexDirection="column" justifyContent="space-between" style={{ height: '100%' }}>
                   <Typography variant="body1" style={{ textAlign: 'center' }}>
-                    Upload your resume for us to analyze your skills and provide personalized mentor matches.
+                    Upload your resume for us to analyze your skills and provide personalized mentor matches. 
+                  </Typography>
+                  <Typography variant="body1" style={{ textAlign: 'center', justifyContent: 'flex-start' }}> 
+                    Please upload the file in .docx format.
                   </Typography>
 
                   {/* Choose File Button */}
@@ -300,7 +279,7 @@ function MatchingPage() {
                       Choose File
                       <Input
                         type="file"
-                        inputProps={{ accept: '.pdf, .docx' }}
+                        inputProps={{ accept: '.docx' }}
                         onChange={handleFileUpload}
                         style={{ display: 'none' }} // Hide the actual input
                       />
