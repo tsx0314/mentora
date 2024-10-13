@@ -1,4 +1,5 @@
-# Mentora by PSA Code Sprint 2024 Team 126 LTYZ
+# *Mentora* by PSA Code Sprint 2024 Team 126 LTYZ
+## Introduction
 ### Tech Stack
 
 ![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black)
@@ -28,6 +29,10 @@ Technology-driven Initiatives that enhance well-being and promote equity and inc
  
 The goal is to enhance PSA's capacity to cultivate a highly engaged and diverse workforce by developing innovative, data and AI-driven solutions that promote continuous learning and belonging, supporting employees of all generations and driving long-term success in the dynamic port ecosystem.
 
+## Getting Started with Our Web App
+We deployed our web app prototype with Netlify. \
+Here is the link to Mentora. You can start exploring our app now!\
+[Link to the Mentora](https://symphonious-cascaron-96b516.netlify.app/)
 ## User Guide
 
 ### Landing Page
@@ -68,5 +73,32 @@ By using this tool, you can **identify growth opportunities** in your career and
 Join us and take charge of your career development. With our **AI-powered** platform, you can **cultivate a culture of continuous learning** in your organization while taking action to **identify growth opportunities** and advance your career.
 
 
-# Getting Started with Our Web App
-[Link to the Deployed App](https://symphonious-cascaron-96b516.netlify.app/)
+# Instructions for Building Locally
+Remember to create a `.env` file to include you own firebase configuration and OPENAI keys to enable the database and AI api connection! \
+The deployed app has access to our team's own firebase database and OPENAI api, but you need your own api keys to access to the full functionalities in the local environment.
+```
+REACT_APP_FIREBASE_API_KEY="YOU_KEY"
+REACT_APP_FIREBASE_AUTH_DOMAIN="YOUR_DOMAIN"
+REACT_APP_FIREBASE_PROJECT_ID="YOU_PROJECT_ID"
+REACT_APP_FIREBASE_STORAGE_BUCKET="YOUR_STORAGE_BUCKET"
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID="YOUR_SENDER_ID"
+REACT_APP_FIREBASE_APP_ID="YOUR_APP_ID"
+REACT_APP_FIREBASE_MEASUREMENT_ID="YOUR_MEASUREMENT_ID"
+REACT_APP_OPENAI_API_KEY="YOUR_OPENAI_API_KEY"
+```
+After you download the repository, you can install the relevant dependencies and run:
+### `npm start`
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+### `npm test`
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `npm run build`
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
