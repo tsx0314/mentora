@@ -24,7 +24,7 @@ function ResourcePage() {
 
   // State for GPT response and loading state
   const [gptResponse, setGptResponse] = useState([]);
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false); 
 
   // Handle changes to current department
   const handleCurrentDepartmentChange = (event) => {
@@ -124,12 +124,12 @@ function ResourcePage() {
       if (Array.isArray(jsonResponse.SkillsToLearn) && Array.isArray(jsonResponse.CoursesToTake)) {
         setGptResponse(jsonResponse);
       } else {
-        setGptResponse(null); // If not valid response
+        setGptResponse(null); 
       }
     } catch (error) {
       console.error('Error fetching GPT-4 response:', error);
     } finally {
-      setLoading(false); // End loading
+      setLoading(false); 
     }
   };
   
