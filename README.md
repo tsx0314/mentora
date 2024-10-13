@@ -50,7 +50,7 @@ Our platform empowers users to **cultivate a culture of continuous learning and 
 
 The **match-making process is powered by AI**, ensuring that you are paired with mentors who can guide you on the most relevant learning paths.
 
-![MM Page](https://github.com/xiaoge26/mentoraImages/blob/main/Screenshot%20(1320).png)
+![MM Page](public/mathcing.gif)
 
 ### Career Pathway Generator
 
@@ -62,7 +62,7 @@ By using this tool, you can **identify growth opportunities** in your career and
 
 #### Resource Page Screenshot
 
-![Resource Page](public/resource.png)
+![Resource Page](public/resource.gif)
 
 ### Why Choose This Platform?
 - **AI-powered Learning:** Our platform leverages **AI** to offer precise recommendations and mentorship connections based on your skills and goals.
