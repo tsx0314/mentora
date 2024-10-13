@@ -372,46 +372,60 @@ function ResourcePage() {
                       </Typography>
                     </Box>
                   ) : (
-                    gptResponse?.SkillsToLearn?.length > 0 ? (
-                      gptResponse.SkillsToLearn.map((skill, index) => (
-                        <Box key={index} sx={{ marginBottom: '20px' }}>
-                          <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#61dafb' }}>
-                            <TypingEffect
-                                text={`${index + 1}. ${skill}`}
-                                speed={100}
-                                typingDelay={400}
-                                displayTextRenderer={(text) => (
-                                  <span>{text}</span>
-                                )}
-                              />
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', marginBottom: '10px', lineHeight: 1.8 }}>
-                            <TypingEffect
-                                text={`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}
-                                speed={100}
-                                typingDelay={400}
-                                displayTextRenderer={(text) => (
-                                  <span>{text}</span>
-                                )}
-                              />
-                          </Typography>
-                          <Typography variant="body2" sx={{ color: '#ffffff', marginBottom: '10px', lineHeight: 1.8 }}>
+                    gptResponse?.SkillsToLearn?.length > 0 && (
+                      <>
+                        {/* Introductory Typography */}
+                        <Typography variant="body2" sx={{ fontWeight: 'bold', color: '#ffffff', marginBottom: '10px' }}>
                           <TypingEffect
-                                text={`Description: ${gptResponse.CoursesDescription[index] || 'No course description available'}`}
-                                speed={100}
+                            text="Here are some exciting skills to explore based on your current talents and career goals! We've also included fantastic course recommendations for each skill to help you on your journey. Dive in and discover what you can achieve!"
+                            speed={30}
+                            typingDelay={400}
+                            displayTextRenderer={(text) => (
+                              <span>{text}</span>
+                            )}
+                          />
+                        </Typography>
+
+                        {gptResponse.SkillsToLearn.map((skill, index) => (
+                          <Box key={index} sx={{ marginBottom: '20px' }}>
+                            <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#61dafb' }}>
+                              <TypingEffect
+                                text={`${index + 1}. ${skill}`}
+                                speed={30}
                                 typingDelay={400}
                                 displayTextRenderer={(text) => (
                                   <span>{text}</span>
                                 )}
                               />
-                            
-                          </Typography>
-                          <Divider sx={{ backgroundColor: '#61dafb', marginY: '10px' }} />  {/* Divider added here */}
-                        </Box>
-                      ))
-                    ) : null
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#ffffff', marginBottom: '10px', lineHeight: 1.8 }}>
+                              <TypingEffect
+                                text={`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}
+                                speed={30}
+                                typingDelay={400}
+                                displayTextRenderer={(text) => (
+                                  <span>{text}</span>
+                                )}
+                              />
+                            </Typography>
+                            <Typography variant="body2" sx={{ color: '#ffffff', marginBottom: '10px', lineHeight: 1.8 }}>
+                              <TypingEffect
+                                text={`Description: ${gptResponse.CoursesDescription[index] || 'No course description available'}`}
+                                speed={30}
+                                typingDelay={400}
+                                displayTextRenderer={(text) => (
+                                  <span>{text}</span>
+                                )}
+                              />
+                            </Typography>
+                            <Divider sx={{ backgroundColor: '#61dafb', marginY: '10px' }} /> {/* Divider added here */}
+                          </Box>
+                        ))}
+                      </>
+                    ) 
                   )}
                 </Box>
+
 
 
               </Paper>
