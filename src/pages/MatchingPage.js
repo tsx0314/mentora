@@ -155,7 +155,6 @@ function MatchingPage() {
 
       console.log("Best Matched Mentor:", bestMatch);
       
-      // Display the best match
       setOutput(bestMatch);
 
     } catch (error) {
@@ -261,19 +260,19 @@ function MatchingPage() {
                   {/* Choose File Button */}
                   <Box display="flex" flexDirection="column" alignItems="center">
                     <Button
-                      variant="outlined" // Changed to outlined for visibility
+                      variant="outlined" 
                       component="label"
                       style={{
-                        backgroundColor: '#111c30', // Same as container bg color
-                        border: '2px solid #61dafb', // Border color matching the background
+                        backgroundColor: '#111c30', 
+                        border: '2px solid #61dafb', 
                         color: '#61dafb', // Text color
                         fontFamily: 'Myriad',
                         fontWeight: 'bold',
-                        padding: '5px 10px', // Shorter padding
+                        padding: '5px 10px', 
                         borderRadius: '30px',
                         fontSize: '1rem',
                         marginBottom: '5px',
-                        width: '150px', // Set specific width
+                        width: '150px', 
                       }}
                     >
                       Choose File
@@ -281,7 +280,7 @@ function MatchingPage() {
                         type="file"
                         inputProps={{ accept: '.docx' }}
                         onChange={handleFileUpload}
-                        style={{ display: 'none' }} // Hide the actual input
+                        style={{ display: 'none' }} 
                       />
                     </Button>
                     {/* File name display and cross icon */}
@@ -294,7 +293,7 @@ function MatchingPage() {
                           onClick={handleRemoveFile}
                           style={{
                             cursor: 'pointer',
-                            color: '#61dafb', // Same color as the submit button background
+                            color: '#61dafb', 
                           }}
                         />
                       )}
@@ -316,7 +315,7 @@ function MatchingPage() {
                           color: '#0A0F1F',
                           fontFamily: 'Myriad',
                           fontWeight: 'bold',
-                          padding: '10px 20px', // Shorter padding
+                          padding: '10px 20px', 
                           marginBottom: '10px',
                           borderRadius: '30px',
                           fontSize: '1rem',
@@ -402,10 +401,10 @@ function MatchingPage() {
                   ) : (
                     <ReactTypingEffect
                       text="Your mentor match will appear here."
-                      speed={100} // Typing speed
-                      eraseSpeed={100} // Erase speed
-                      typingDelay={200} // Delay before typing starts
-                      eraseDelay={5000} // Delay before erasing
+                      speed={100}
+                      eraseSpeed={100} 
+                      typingDelay={200} 
+                      eraseDelay={5000} 
                       displayTextRenderer={(text) => (
                         <span style={{ fontWeight: 'bold', color: '#ffffff' }}>{text}</span>
                       )}

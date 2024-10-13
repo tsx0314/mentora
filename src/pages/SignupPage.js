@@ -62,7 +62,7 @@ const SignupPage = () => {
                 marginTop: '100px', 
                 padding: '20px',
                 borderRadius: '8px',
-                fontFamily: 'Myriad',  // Changed to Myriad
+                fontFamily: 'Myriad',  
                 fontWeight: 'bold',
             }}
         >
@@ -73,7 +73,7 @@ const SignupPage = () => {
                     borderRadius: 2, 
                     boxShadow: 3,
                     border: '2px solid #61dafb',
-                    fontFamily: 'Myriad',  // Changed to Myriad
+                    fontFamily: 'Myriad',  
                     fontWeight: 'bold',
                 }}
             >
@@ -81,7 +81,7 @@ const SignupPage = () => {
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }} // Changed to Myriad
+                    sx={{ color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }} 
                 >
                     Sign Up
                 </Typography>
@@ -92,7 +92,7 @@ const SignupPage = () => {
                         color="error" 
                         sx={{ 
                             mb: 2, 
-                            fontFamily: 'Myriad',  // Changed to Myriad
+                            fontFamily: 'Myriad',  
                             fontWeight: 'bold' 
                         }}
                     >
@@ -105,7 +105,7 @@ const SignupPage = () => {
                         align="center" 
                         sx={{ 
                             mb: 2, 
-                            fontFamily: 'Myriad',  // Changed to Myriad
+                            fontFamily: 'Myriad',  
                             fontWeight: 'bold',
                             color: 'lightgreen'  
                         }}
@@ -199,7 +199,7 @@ const SignupPage = () => {
                             '&:hover': {
                                 backgroundColor: '#55c3e5'
                             },
-                            fontFamily: 'Myriad',  // Changed to Myriad
+                            fontFamily: 'Myriad',  
                             fontWeight: 'bold',
                             padding: '10px 30px',
                             borderRadius: '30px'
@@ -214,7 +214,7 @@ const SignupPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Myriad', fontWeight: 'bold' }} // Changed to Myriad
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Myriad', fontWeight: 'bold' }} 
                 >
                     Already have an account? Log in here.
                 </Link>

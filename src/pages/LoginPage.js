@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Container, TextField, Button, Typography, Box, Link } from '@mui/material';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; // Import Firebase Auth methods
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'; 
+import { useNavigate } from 'react-router-dom'; 
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');  // State to store email input
-    const [password, setPassword] = useState('');  // State to store password input
-    const [errorMessage, setErrorMessage] = useState(''); // State to store error messages
-    const auth = getAuth();  // Get Firebase Auth instance
-    const navigate = useNavigate();  // Initialize useNavigate hook for redirection
+    const [email, setEmail] = useState('');  
+    const [password, setPassword] = useState(''); 
+    const [errorMessage, setErrorMessage] = useState(''); 
+    const auth = getAuth(); 
+    const navigate = useNavigate(); 
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -47,7 +47,6 @@ const LoginPage = () => {
     };
 
     useEffect(() => {
-        // Set the background color of the body to dark blue (close to black)
         document.body.style.backgroundColor = '#0A0F1F';
     }, []);
 
@@ -77,7 +76,7 @@ const LoginPage = () => {
                     variant="h5" 
                     align="center" 
                     gutterBottom 
-                    sx={{ color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }} // Set text color to white and font to Myriad
+                    sx={{ color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }} 
                 >
                     Log In
                 </Typography>
@@ -100,10 +99,10 @@ const LoginPage = () => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } 
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }, 
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -126,10 +125,10 @@ const LoginPage = () => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         InputLabelProps={{ 
-                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } // Change label color and font to bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' } 
                         }} 
                         InputProps={{ 
-                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' }, // Change input text color to white and make it bold
+                            style: { color: 'white', fontFamily: 'Myriad', fontWeight: 'bold' },
                             sx: { 
                                 '& .MuiOutlinedInput-notchedOutline': { 
                                     borderColor: '#61dafb'
@@ -151,8 +150,8 @@ const LoginPage = () => {
                             '&:hover': {
                                 backgroundColor: '#55c3e5'
                             },
-                            fontFamily: 'Myriad', // Set font family to Myriad
-                            fontWeight: 'bold', // Make the button text bold
+                            fontFamily: 'Myriad', 
+                            fontWeight: 'bold', 
                             padding: '10px 30px',
                             borderRadius: '30px'
                         }} 
@@ -166,7 +165,7 @@ const LoginPage = () => {
                     variant="body2" 
                     align="center" 
                     display="block" 
-                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Myriad', fontWeight: 'bold' }} // Set link color and font to match
+                    sx={{ marginTop: 2, color: '#55c3e5', fontFamily: 'Myriad', fontWeight: 'bold' }}
                 >
                     Don't have an account? Sign up here.
                 </Link>
