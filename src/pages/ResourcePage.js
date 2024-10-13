@@ -311,7 +311,9 @@ function ResourcePage() {
                 <Typography variant="h6" style={{ fontFamily: 'Myriad', fontWeight: 'bold', marginTop: '10px' }}>
                   Your Career Pathway
                 </Typography>
-
+                <Typography variant="body1" style={{ fontFamily: 'Myriad', marginLeft: '10px', marginBottom: '10px', color: '#ffffff' }}>
+                    Please select a department and add skills to generate pathways.     
+                </Typography>
                 {/* Display GPT Response */}
                 <Box
                   sx={{
@@ -346,7 +348,7 @@ function ResourcePage() {
                         ))
                       ) : (
                         <Typography variant="body2">
-                          Waiting input...
+                          Please select your current details from the drop down list and describe your career aspirations. Analysis will start after you submit.
                         </Typography>
                       )}
                     </List>
