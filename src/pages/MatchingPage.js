@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import ReactTypingEffect from 'react-typing-effect';
 import { AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Button, Avatar, Tabs, Tab, Input } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
@@ -64,6 +65,34 @@ function MatchingPage() {
       return '';
     }
   };
+
+  // Typing animation function
+  function TypingEffect({ text, speed, delay }) {
+    const [displayedText, setDisplayedText] = useState('');
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+      if (index < text.length) {
+        const timeout = setTimeout(() => {
+          setDisplayedText(displayedText + text[index]);
+          setIndex(index + 1);
+        }, speed);
+        return () => clearTimeout(timeout);
+      }
+    }, [index, text, displayedText, speed]);
+
+    useEffect(() => {
+      // Delay before starting typing effect
+      const startTyping = setTimeout(() => {
+        setDisplayedText('');
+        setIndex(0);
+      }, delay);
+
+      return () => clearTimeout(startTyping);
+    }, [text, delay]);
+
+    return <span>{displayedText}</span>;
+  }
 
   // Fetch mentors from Firebase
   const fetchMentors = async () => {
@@ -367,21 +396,41 @@ function MatchingPage() {
                       {JSON.parse(output).map((mentor, index) => (
                         <Box key={index} style={{ marginBottom: '20px', borderBottom: '1px solid #61dafb', paddingBottom: '10px' }}>
                           <Typography variant="h6" style={{ fontWeight: 'bold', color: '#61dafb' }}>
-                            {mentor.name}
+                            <TypingEffect text={mentor.name || "No Name Available"} speed={100} delay={200} />
                           </Typography>
                           <Typography variant="body1" style={{ color: '#ffffff' }}>
-                            <strong>Email:</strong> {mentor.email}
+                            <strong>Email:</strong> 
+                            <TypingEffect
+                              text={mentor.email}
+                              speed={100}
+                              typingDelay={400}
+                              displayTextRenderer={(text) => (
+                                <span>{text}</span>
+                              )}
+                            />
                           </Typography>
                           <Typography variant="body1" style={{ color: '#ffffff' }}>
-                            <strong>Skills:</strong> {mentor.skills.join(', ')}
+                            <strong>Skills:</strong>{' '}
+                            <TypingEffect
+                              text={mentor.skills && mentor.skills.length > 0 ? mentor.skills.join(', ') : "No Skills Available"}
+                              speed={100}
+                              delay={600}
+                            />
                           </Typography>
                         </Box>
                       ))}
                     </Box>
                   ) : (
-                    <Typography variant="body1" style={{ textAlign: 'center' }}>
-                      Your mentor match will appear here.
-                    </Typography>
+                    <ReactTypingEffect
+                      text="Your mentor match will appear here."
+                      speed={100} // Typing speed
+                      eraseSpeed={100} // Erase speed
+                      typingDelay={200} // Delay before typing starts
+                      eraseDelay={5000} // Delay before erasing
+                      displayTextRenderer={(text) => (
+                        <span style={{ fontWeight: 'bold', color: '#ffffff' }}>{text}</span>
+                      )}
+                    />
                   )}
                 </Paper>
 
