@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {
   AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab,
-  Select, MenuItem, FormControl, InputLabel, TextField, Chip, Button, List, ListItem, ListItemText, CircularProgress
+  Select, MenuItem, FormControl, InputLabel, TextField, Chip, Button, CircularProgress
 } from '@mui/material';
+import { Divider } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useNavigate, useLocation } from 'react-router';
 import axios from 'axios';
@@ -52,14 +53,21 @@ function ResourcePage() {
     const systemPrompt = `You are an expert career advisor. You help users identify necessary skills and courses based on their current role and their career aspirations.`;
     
     const userPrompt = `
-      I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
-      My current skills include: ${currentSkills.join(', ')}.
-      My aspirations are: ${aspiringInput}.
-      Based on this, please provide:
-      1. Three skills I should learn to advance in my desired role.
-      2. Recommended courses or platforms to learn these skills.
-      Please reply in JSON format with 'SkillsToLearn' and 'CoursesToTake' arrays where the indexes match.
-    `;
+    I am currently working in the ${currentDepartment} department at an ${currentExperienceLevel} level.
+    My current skills include: ${currentSkills.join(', ')}.
+    My aspirations are: ${aspiringInput}.
+    
+    Please provide:
+    1. Three skills I should learn to advance in my desired role.
+    2. Recommended courses or platforms to learn these skills.
+  
+    Reply in the following JSON format:
+    {
+      "SkillsToLearn": ["Skill 1", "Skill 2", "Skill 3"],
+      "CoursesToTake": ["Course for Skill 1 LearningPlatformName", "Course for Skill 2 LearningPlatformName", "Course for Skill 3 LearningPlatformName"]
+    }
+    Please ensure the arrays correspond by index.
+  `;
   
     try {
       const response = await axios.post(
@@ -334,24 +342,19 @@ function ResourcePage() {
                       </Typography>
                     </Box>
                   ) : (
-                    <List>
-                      {gptResponse?.SkillsToLearn?.length > 0 ? (
-                        gptResponse.SkillsToLearn.map((skill, index) => (
-                          <ListItem key={index} sx={{ marginBottom: '10px' }}>
-                            <ListItemText
-                              primary={`${index + 1}. ${skill}`}  // Display the skill
-                              secondary={`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}  // Match the course by index
-                              primaryTypographyProps={{ fontWeight: 'bold', color: '#61dafb' }}
-                              secondaryTypographyProps={{ color: '#ffffff' }}
-                            />
-                          </ListItem>
-                        ))
-                      ) : (
-                        <Typography variant="body2" style={{ fontFamily: 'Myriad'}}>
-                          Please select your current details from the drop down list and describe your career aspirations. Analysis will start after you submit.
-                        </Typography>
-                      )}
-                    </List>
+                    gptResponse?.SkillsToLearn?.length > 0 ? (
+                      gptResponse.SkillsToLearn.map((skill, index) => (
+                        <Box key={index} sx={{ marginBottom: '10px' }}>
+                          <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#61dafb' }}>
+                            {`${index + 1}. ${skill}`}
+                          </Typography>
+                          <Typography variant="body2" sx={{ color: '#ffffff' }}>
+                            {`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}
+                          </Typography>
+                          <Divider sx={{ backgroundColor: '#61dafb', marginY: '10px' }} />  {/* Divider added here */}
+                        </Box>
+                      ))
+                    ) : null
                   )}
                 </Box>
 
