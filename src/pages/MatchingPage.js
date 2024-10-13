@@ -375,13 +375,13 @@ function MatchingPage() {
                       {JSON.parse(output).map((mentor, index) => (
                         <Box key={index} style={{ marginBottom: '20px', borderBottom: '1px solid #61dafb', paddingBottom: '10px' }}>
                           <Typography variant="h6" style={{ fontWeight: 'bold', color: '#61dafb' }}>
-                            <TypingEffect text={mentor.name || "No Name Available"} speed={100} delay={200} />
+                            <TypingEffect text={mentor.name || "No Name Available"} speed={50} delay={200} />
                           </Typography>
                           <Typography variant="body1" style={{ color: '#ffffff' }}>
                             <strong>Email:</strong> 
                             <TypingEffect
                               text={mentor.email}
-                              speed={100}
+                              speed={50}
                               typingDelay={400}
                               displayTextRenderer={(text) => (
                                 <span>{text}</span>
@@ -392,7 +392,7 @@ function MatchingPage() {
                             <strong>Skills:</strong>{' '}
                             <TypingEffect
                               text={mentor.skills && mentor.skills.length > 0 ? mentor.skills.join(', ') : "No Skills Available"}
-                              speed={100}
+                              speed={30}
                               delay={600}
                             />
                           </Typography>
