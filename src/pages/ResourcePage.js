@@ -347,7 +347,7 @@ function ResourcePage() {
                           </ListItem>
                         ))
                       ) : (
-                        <Typography variant="body2">
+                        <Typography variant="body2" style={{ fontFamily: 'Myriad'}}>
                           Please select your current details from the drop down list and describe your career aspirations. Analysis will start after you submit.
                         </Typography>
                       )}
