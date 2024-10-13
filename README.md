@@ -50,7 +50,11 @@ Our platform empowers users to **cultivate a culture of continuous learning and 
 
 The **match-making process is powered by AI**, ensuring that you are paired with mentors who can guide you on the most relevant learning paths.
 
+#### Matching Page Gif
+We have added animation effect to improve the user interface and add fun to the user experience. Let's see it in action!
 ![MM Page](public/matching.gif)
+#### Matching Page Screen
+![Match Page Screenshot](public/matchscreen.png)
 
 ### Career Pathway Generator
 
@@ -60,9 +64,13 @@ This feature is **AI-powered**, meaning it analyzes your input and provides high
 
 By using this tool, you can **identify growth opportunities** in your career and take actionable steps toward achieving your goals.
 
-#### Resource Page Screenshot
+#### Resource Page Gif
+Again, we added animated typing effect to improve the user experience!
 
 ![Resource Page](public/resource.gif)
+
+#### Resource Page Screen
+![Resource Page Screenshot](public/resourcescreen.png)
 
 ### Why Choose This Platform?
 - **AI-powered Learning:** Our platform leverages **AI** to offer precise recommendations and mentorship connections based on your skills and goals.
