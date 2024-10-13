@@ -355,7 +355,7 @@ function ResourcePage() {
                 {/* Display GPT Response */}
                 <Box
                   sx={{
-                    height: '200px',
+                    height: '300px',
                     width: "90%",
                     overflowY: 'auto',
                     padding: '10px',
