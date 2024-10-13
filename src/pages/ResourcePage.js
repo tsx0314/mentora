@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   AppBar, Toolbar, Typography, Box, Grid, Container, Paper, Avatar, Tabs, Tab,
   Select, MenuItem, FormControl, InputLabel, TextField, Chip, Button, CircularProgress
@@ -45,6 +45,34 @@ function ResourcePage() {
   const handleDeleteCurrentSkill = (skillToDelete) => {
     setCurrentSkills(currentSkills.filter((skill) => skill !== skillToDelete));
   };
+
+  // Typing animation function
+  function TypingEffect({ text, speed, delay }) {
+    const [displayedText, setDisplayedText] = useState('');
+    const [index, setIndex] = useState(0);
+
+    useEffect(() => {
+      if (index < text.length) {
+        const timeout = setTimeout(() => {
+          setDisplayedText(displayedText + text[index]);
+          setIndex(index + 1);
+        }, speed);
+        return () => clearTimeout(timeout);
+      }
+    }, [index, text, displayedText, speed]);
+
+    useEffect(() => {
+      // Delay before starting typing effect
+      const startTyping = setTimeout(() => {
+        setDisplayedText('');
+        setIndex(0);
+      }, delay);
+
+      return () => clearTimeout(startTyping);
+    }, [text, delay]);
+
+    return <span>{displayedText}</span>;
+  }
 
   // Function to submit aspirations and generate a career pathway
   const handleAspirationSubmit = async () => {
@@ -346,10 +374,24 @@ function ResourcePage() {
                       gptResponse.SkillsToLearn.map((skill, index) => (
                         <Box key={index} sx={{ marginBottom: '10px' }}>
                           <Typography variant="h6" sx={{ fontWeight: 'bold', color: '#61dafb' }}>
-                            {`${index + 1}. ${skill}`}
+                            <TypingEffect
+                                text={`${index + 1}. ${skill}`}
+                                speed={100}
+                                typingDelay={400}
+                                displayTextRenderer={(text) => (
+                                  <span>{text}</span>
+                                )}
+                              />
                           </Typography>
                           <Typography variant="body2" sx={{ color: '#ffffff' }}>
-                            {`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}
+                            <TypingEffect
+                                text={`Course: ${gptResponse.CoursesToTake[index] || 'No course available'}`}
+                                speed={100}
+                                typingDelay={400}
+                                displayTextRenderer={(text) => (
+                                  <span>{text}</span>
+                                )}
+                              />
                           </Typography>
                           <Divider sx={{ backgroundColor: '#61dafb', marginY: '10px' }} />  {/* Divider added here */}
                         </Box>
