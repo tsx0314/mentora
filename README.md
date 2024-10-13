@@ -50,7 +50,7 @@ Our platform empowers users to **cultivate a culture of continuous learning and 
 
 The **match-making process is powered by AI**, ensuring that you are paired with mentors who can guide you on the most relevant learning paths.
 
-![MM Page](public/mathcing.gif)
+![MM Page](public/matching.gif)
 
 ### Career Pathway Generator
 
