@@ -65,7 +65,7 @@ This feature is **AI-powered**, meaning it analyzes your input and provides high
 By using this tool, you can **identify growth opportunities** in your career and take actionable steps toward achieving your goals.
 
 #### Career Pathway Generator Gif
-Again, we added animated typing effect to improve the user experience!\
+Again, we added animated typing effect to improve the user experience!
 
 ![Resource Page](public/resource.gif)
 
